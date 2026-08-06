@@ -10,15 +10,17 @@ const geistMono = Geist_Mono({
 })
 
 export const metadata: Metadata = {
-  title: 'Tsedey Solomon - Software Developer & AI/ML Specialist',
-  description: 'Premium portfolio showcasing full-stack web development, AI/ML expertise, and embedded systems projects. Innovative software solutions builder.',
-  keywords: 'developer, portfolio, AI, machine learning, React, Next.js, embedded systems, Python',
+  title: 'Tsedey Solomon | Full-Stack Software Developer',
+  description: 'Full-Stack Software Developer based in Addis Ababa, Ethiopia. Specialized in Angular, .NET, React/Next.js, TypeScript, and PostgreSQL. Available for opportunities.',
+  keywords: 'Tsedey Solomon, Full-Stack Developer, Angular, React, Next.js, TypeScript, .NET, Node.js, PostgreSQL, Software Developer Ethiopia, Addis Ababa',
   authors: [{ name: 'Tsedey Solomon' }],
   openGraph: {
     type: 'website',
     locale: 'en_US',
-    title: 'Tsedey Solomon - Software Developer & AI/ML Specialist',
-    description: 'Premium portfolio showcasing software development, AI/ML learning, and embedded systems expertise.',
+    url: 'https://my-portfolio-tsed.vercel.app',
+    siteName: 'Tsedey Solomon Portfolio',
+    title: 'Tsedey Solomon | Full-Stack Software Developer',
+    description: 'Crafting performant, high-scale digital solutions that bridge design and technology. Angular, .NET, React, TypeScript specialist.',
   },
 }
 

@@ -1,7 +1,7 @@
 'use client';
 
 import { useState, useEffect } from 'react';
-import { Menu, X, Sun, Moon } from 'lucide-react';
+import { Menu, X, Sun, Moon, FileText } from 'lucide-react';
 import Link from 'next/link';
 
 const Navigation = () => {
@@ -12,13 +12,11 @@ const Navigation = () => {
 
   useEffect(() => {
     setMounted(true);
-    
-    // Check for saved theme preference or default to system preference
+
     const savedTheme = localStorage.getItem('theme');
     const systemPrefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
-    
     const shouldBeDark = savedTheme === 'dark' || (!savedTheme && systemPrefersDark);
-    
+
     if (shouldBeDark) {
       document.documentElement.classList.add('dark');
       setIsDark(true);
@@ -32,57 +30,20 @@ const Navigation = () => {
     };
 
     window.addEventListener('scroll', handleScroll);
-    return () => {
-      window.removeEventListener('scroll', handleScroll);
-    };
+    return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
   const toggleDarkMode = () => {
     const newDarkState = !isDark;
-    
     if (newDarkState) {
       document.documentElement.classList.add('dark');
       localStorage.setItem('theme', 'dark');
-      setIsDark(true);
     } else {
       document.documentElement.classList.remove('dark');
       localStorage.setItem('theme', 'light');
-      setIsDark(false);
     }
+    setIsDark(newDarkState);
   };
-
-  // Prevent hydration mismatch by not rendering the theme button until mounted
-  if (!mounted) {
-    return (
-      <nav className={`fixed top-0 w-full z-50 transition-all duration-300 ${
-        scrolled 
-          ? 'bg-background/80 backdrop-blur-md shadow-lg border-b border-border' 
-          : 'bg-transparent'
-      }`}>
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="flex justify-between items-center h-16">
-            <Link href="/" className="flex items-center gap-2 font-bold text-xl bg-gradient-to-r from-primary to-accent bg-clip-text text-transparent">
-              TS
-            </Link>
-            <div className="hidden md:flex items-center gap-8">
-              <a href="#about" className="text-foreground/70 hover:text-primary transition-colors font-medium">About</a>
-              <a href="#skills" className="text-foreground/70 hover:text-primary transition-colors font-medium">Skills</a>
-              <a href="#projects" className="text-foreground/70 hover:text-primary transition-colors font-medium">Projects</a>
-              <a href="#journey" className="text-foreground/70 hover:text-primary transition-colors font-medium">Journey</a>
-              <a href="#experience" className="text-foreground/70 hover:text-primary transition-colors font-medium">Experience</a>
-              <a href="#contact" className="text-foreground/70 hover:text-primary transition-colors font-medium">Contact</a>
-            </div>
-            <div className="flex items-center gap-4">
-              <div className="p-2 w-10 h-10" />
-              <button className="md:hidden p-2 hover:bg-muted rounded-lg">
-                <Menu size={24} />
-              </button>
-            </div>
-          </div>
-        </div>
-      </nav>
-    );
-  }
 
   const navLinks = [
     { href: '#about', label: 'About' },
@@ -93,65 +54,115 @@ const Navigation = () => {
     { href: '#contact', label: 'Contact' },
   ];
 
+  const navClasses = `fixed top-0 w-full z-50 transition-all duration-500 ${
+    scrolled
+      ? 'bg-background/80 backdrop-blur-xl shadow-lg shadow-primary/5 border-b border-border'
+      : 'bg-transparent'
+  }`;
+
+  if (!mounted) {
+    return (
+      <nav className={navClasses}>
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="flex justify-between items-center h-16">
+            <Link href="/" className="font-black text-xl bg-gradient-to-r from-primary to-accent bg-clip-text text-transparent tracking-tight">
+              TSEDEY.DEV
+            </Link>
+            <div className="hidden md:flex items-center gap-6">
+              {navLinks.map((link) => (
+                <a key={link.href} href={link.href} className="text-foreground/70 hover:text-primary transition-colors text-sm font-medium">
+                  {link.label}
+                </a>
+              ))}
+            </div>
+            <div className="w-10 h-10" />
+          </div>
+        </div>
+      </nav>
+    );
+  }
+
   return (
-    <nav className={`fixed top-0 w-full z-50 transition-all duration-300 ${
-      scrolled 
-        ? 'bg-background/80 backdrop-blur-md shadow-lg border-b border-border' 
-        : 'bg-transparent'
-    }`}>
+    <nav className={navClasses}>
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between items-center h-16">
           {/* Logo */}
-          <Link href="/" className="flex items-center gap-2 font-bold text-xl bg-gradient-to-r from-primary to-accent bg-clip-text text-transparent">
-            TS
+          <Link
+            href="/"
+            className="font-black text-xl bg-gradient-to-r from-primary to-accent bg-clip-text text-transparent tracking-tight hover:opacity-80 transition-opacity"
+          >
+            TSEDEY.DEV
           </Link>
 
-          {/* Desktop Navigation */}
-          <div className="hidden md:flex items-center gap-8">
+          {/* Desktop Nav */}
+          <div className="hidden md:flex items-center gap-1">
             {navLinks.map((link) => (
               <a
                 key={link.href}
                 href={link.href}
-                className="text-foreground/70 hover:text-primary transition-colors font-medium"
+                className="px-4 py-2 rounded-full text-sm font-medium text-foreground/70 hover:text-primary hover:bg-primary/8 transition-all duration-200"
               >
                 {link.label}
               </a>
             ))}
           </div>
 
-          {/* Right Side Actions */}
-          <div className="flex items-center gap-4">
+          {/* Right Actions */}
+          <div className="flex items-center gap-2">
+            {/* Dark Mode Toggle */}
             <button
               onClick={toggleDarkMode}
-              className="p-2 rounded-lg hover:bg-muted transition-colors"
+              className="p-2 rounded-full hover:bg-primary/10 text-foreground/70 hover:text-primary transition-all duration-200"
               aria-label="Toggle dark mode"
             >
-              {isDark ? <Sun size={20} /> : <Moon size={20} />}
+              {isDark ? <Sun size={18} /> : <Moon size={18} />}
             </button>
 
-            {/* Mobile Menu Button */}
+            {/* Resume Button */}
+            <a
+              href="/24.21.TsedeysResume.pdf"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="hidden sm:flex items-center gap-2 px-4 py-2 rounded-full bg-primary text-primary-foreground text-sm font-semibold hover:shadow-lg hover:shadow-primary/30 hover:scale-[1.02] transition-all duration-200"
+            >
+              <FileText size={15} />
+              Resume
+            </a>
+
+            {/* Mobile Menu Toggle */}
             <button
               onClick={() => setIsOpen(!isOpen)}
-              className="md:hidden p-2 hover:bg-muted rounded-lg"
+              className="md:hidden p-2 hover:bg-muted rounded-full transition-colors"
+              aria-label="Toggle menu"
             >
-              {isOpen ? <X size={24} /> : <Menu size={24} />}
+              {isOpen ? <X size={22} /> : <Menu size={22} />}
             </button>
           </div>
         </div>
 
         {/* Mobile Navigation */}
         {isOpen && (
-          <div className="md:hidden pb-4 space-y-2">
+          <div className="md:hidden pb-4 pt-2 space-y-1 border-t border-border mt-2">
             {navLinks.map((link) => (
               <a
                 key={link.href}
                 href={link.href}
-                className="block px-4 py-2 text-foreground/70 hover:text-primary hover:bg-muted rounded-lg transition-colors"
+                className="block px-4 py-3 text-foreground/70 hover:text-primary hover:bg-primary/8 rounded-xl transition-all text-sm font-medium"
                 onClick={() => setIsOpen(false)}
               >
                 {link.label}
               </a>
             ))}
+            <a
+              href="/24.21.TsedeysResume.pdf"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="flex items-center gap-2 mx-4 mt-3 px-4 py-2 rounded-full bg-primary text-primary-foreground text-sm font-semibold justify-center"
+              onClick={() => setIsOpen(false)}
+            >
+              <FileText size={15} />
+              Download Resume
+            </a>
           </div>
         )}
       </div>
