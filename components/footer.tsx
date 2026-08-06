@@ -1,4 +1,5 @@
-import { Github, Linkedin, Mail, Send, Twitter } from 'lucide-react';
+import { Mail, Send } from 'lucide-react';
+import { Github, Linkedin, Twitter } from '@/components/icons';
 
 const socialLinks = [
   { icon: Github, href: 'https://github.com/tsedeysolomons/', label: 'GitHub' },

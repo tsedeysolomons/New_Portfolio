@@ -1,7 +1,8 @@
 'use client';
 
 import { useState } from 'react';
-import { Mail, MapPin, Send, Loader, Github, Linkedin, Twitter } from 'lucide-react';
+import { Mail, MapPin, Send, Loader } from 'lucide-react';
+import { Github, Linkedin, Twitter } from '@/components/icons';
 
 const contactInfo = [
   {

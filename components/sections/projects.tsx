@@ -1,4 +1,5 @@
-import { ExternalLink, Github, Star } from 'lucide-react';
+import { ExternalLink, Star } from 'lucide-react';
+import { Github } from '@/components/icons';
 
 const projects = [
   {

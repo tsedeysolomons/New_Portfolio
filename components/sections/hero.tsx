@@ -1,7 +1,8 @@
 'use client';
 
 import { useEffect, useState } from 'react';
-import { Github, Linkedin, Mail, Send, ExternalLink, MapPin } from 'lucide-react';
+import { Mail, Send, ExternalLink, MapPin } from 'lucide-react';
+import { Github, Linkedin } from '@/components/icons';
 import { motion } from 'framer-motion';
 
 const techBadges = [
