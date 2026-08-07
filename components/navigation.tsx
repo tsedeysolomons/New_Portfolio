@@ -1,7 +1,7 @@
 'use client';
 
 import { useState, useEffect } from 'react';
-import { Menu, X, Sun, Moon, FileText } from 'lucide-react';
+import { Menu, X, Sun, Moon } from 'lucide-react';
 import Link from 'next/link';
 
 const Navigation = () => {
@@ -9,6 +9,7 @@ const Navigation = () => {
   const [isDark, setIsDark] = useState(false);
   const [scrolled, setScrolled] = useState(false);
   const [mounted, setMounted] = useState(false);
+  const [activeSection, setActiveSection] = useState('');
 
   useEffect(() => {
     setMounted(true);
@@ -26,7 +27,17 @@ const Navigation = () => {
     }
 
     const handleScroll = () => {
-      setScrolled(window.scrollY > 50);
+      setScrolled(window.scrollY > 60);
+
+      // Highlight active nav section
+      const sections = ['about', 'skills', 'projects', 'journey', 'experience', 'contact'];
+      for (const id of sections.reverse()) {
+        const el = document.getElementById(id);
+        if (el && window.scrollY >= el.offsetTop - 120) {
+          setActiveSection(id);
+          break;
+        }
+      }
     };
 
     window.addEventListener('scroll', handleScroll);
@@ -46,123 +57,123 @@ const Navigation = () => {
   };
 
   const navLinks = [
-    { href: '#about', label: 'About' },
-    { href: '#skills', label: 'Skills' },
-    { href: '#projects', label: 'Projects' },
-    { href: '#journey', label: 'Journey' },
+    { href: '#about',      label: 'About' },
+    { href: '#skills',     label: 'Skills' },
+    { href: '#projects',   label: 'Projects' },
+    { href: '#journey',    label: 'Journey' },
     { href: '#experience', label: 'Experience' },
-    { href: '#contact', label: 'Contact' },
+    { href: '#contact',    label: 'Contact' },
   ];
 
   const navClasses = `fixed top-0 w-full z-50 transition-all duration-500 ${
     scrolled
-      ? 'bg-background/80 backdrop-blur-xl shadow-lg shadow-primary/5 border-b border-border'
+      ? 'bg-background/85 backdrop-blur-2xl border-b border-border shadow-2xl shadow-black/20'
       : 'bg-transparent'
   }`;
 
-  if (!mounted) {
-    return (
-      <nav className={navClasses}>
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="flex justify-between items-center h-16">
-            <Link href="/" className="font-black text-xl bg-gradient-to-r from-primary to-accent bg-clip-text text-transparent tracking-tight">
-              TSEDEY.DEV
-            </Link>
-            <div className="hidden md:flex items-center gap-6">
-              {navLinks.map((link) => (
-                <a key={link.href} href={link.href} className="text-foreground/70 hover:text-primary transition-colors text-sm font-medium">
-                  {link.label}
-                </a>
-              ))}
-            </div>
-            <div className="w-10 h-10" />
-          </div>
-        </div>
-      </nav>
-    );
-  }
-
   return (
-    <nav className={navClasses}>
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex justify-between items-center h-16">
-          {/* Logo */}
+    <nav className={navClasses} role="navigation" aria-label="Main navigation">
+      <div className="max-w-7xl mx-auto px-5 sm:px-8 lg:px-10">
+        <div className="flex justify-between items-center h-[68px]">
+
+          {/* Logo — bold monogram */}
           <Link
             href="/"
-            className="font-black text-xl bg-gradient-to-r from-primary to-accent bg-clip-text text-transparent tracking-tight hover:opacity-80 transition-opacity"
+            className="group flex items-center gap-2.5"
+            aria-label="Tsedey Solomon — Home"
           >
-            TSEDEY.DEV
+            <div className="w-9 h-9 rounded-xl bg-primary flex items-center justify-center shadow-lg shadow-primary/30 group-hover:scale-105 transition-transform">
+              <span className="text-primary-foreground font-black text-sm leading-none">TS</span>
+            </div>
+            <span className="font-black text-base tracking-tight text-foreground group-hover:text-primary transition-colors">
+              tsedey<span className="text-primary">.dev</span>
+            </span>
           </Link>
 
-          {/* Desktop Nav */}
+          {/* Desktop Nav — uppercase small caps */}
           <div className="hidden md:flex items-center gap-1">
-            {navLinks.map((link) => (
-              <a
-                key={link.href}
-                href={link.href}
-                className="px-4 py-2 rounded-full text-sm font-medium text-foreground/70 hover:text-primary hover:bg-primary/8 transition-all duration-200"
-              >
-                {link.label}
-              </a>
-            ))}
+            {navLinks.map((link) => {
+              const sectionId = link.href.replace('#', '');
+              const isActive = activeSection === sectionId;
+              return (
+                <a
+                  key={link.href}
+                  href={link.href}
+                  className={`relative px-4 py-2 text-[13px] font-semibold uppercase tracking-widest transition-all duration-200 rounded-lg ${
+                    isActive
+                      ? 'text-primary'
+                      : 'text-foreground/50 hover:text-foreground'
+                  }`}
+                >
+                  {link.label}
+                  {isActive && (
+                    <span className="absolute bottom-0.5 left-1/2 -translate-x-1/2 w-4 h-0.5 bg-primary rounded-full" />
+                  )}
+                </a>
+              );
+            })}
           </div>
 
           {/* Right Actions */}
-          <div className="flex items-center gap-2">
+          <div className="flex items-center gap-3">
             {/* Dark Mode Toggle */}
-            <button
-              onClick={toggleDarkMode}
-              className="p-2 rounded-full hover:bg-primary/10 text-foreground/70 hover:text-primary transition-all duration-200"
-              aria-label="Toggle dark mode"
-            >
-              {isDark ? <Sun size={18} /> : <Moon size={18} />}
-            </button>
+            {mounted && (
+              <button
+                onClick={toggleDarkMode}
+                id="dark-mode-toggle"
+                className="w-9 h-9 rounded-xl flex items-center justify-center text-foreground/50 hover:text-foreground hover:bg-muted transition-all duration-200"
+                aria-label={isDark ? 'Switch to light mode' : 'Switch to dark mode'}
+              >
+                {isDark ? <Sun size={17} /> : <Moon size={17} />}
+              </button>
+            )}
 
-            {/* Resume Button */}
+            {/* Hire Me CTA */}
             <a
-              href="/24.21.TsedeysResume.pdf"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="hidden sm:flex items-center gap-2 px-4 py-2 rounded-full bg-primary text-primary-foreground text-sm font-semibold hover:shadow-lg hover:shadow-primary/30 hover:scale-[1.02] transition-all duration-200"
+              href="#contact"
+              className="hidden sm:flex items-center gap-1.5 px-5 py-2.5 rounded-xl bg-primary text-primary-foreground text-[13px] font-bold hover:shadow-lg hover:shadow-primary/30 hover:scale-[1.03] transition-all duration-200"
             >
-              <FileText size={15} />
-              Resume
+              Hire Me
+              <span className="text-primary-foreground/70">→</span>
             </a>
 
             {/* Mobile Menu Toggle */}
             <button
               onClick={() => setIsOpen(!isOpen)}
-              className="md:hidden p-2 hover:bg-muted rounded-full transition-colors"
-              aria-label="Toggle menu"
+              id="mobile-menu-toggle"
+              className="md:hidden w-9 h-9 rounded-xl flex items-center justify-center hover:bg-muted transition-colors"
+              aria-label="Toggle mobile menu"
+              aria-expanded={isOpen}
             >
-              {isOpen ? <X size={22} /> : <Menu size={22} />}
+              {isOpen ? <X size={20} /> : <Menu size={20} />}
             </button>
           </div>
         </div>
 
         {/* Mobile Navigation */}
         {isOpen && (
-          <div className="md:hidden pb-4 pt-2 space-y-1 border-t border-border mt-2">
-            {navLinks.map((link) => (
+          <div className="md:hidden pb-5 pt-3 border-t border-border mt-1 animate-fade-slide-up">
+            <div className="space-y-0.5">
+              {navLinks.map((link) => (
+                <a
+                  key={link.href}
+                  href={link.href}
+                  className="block px-4 py-3 text-[13px] font-semibold uppercase tracking-widest text-foreground/60 hover:text-primary hover:bg-primary/5 rounded-xl transition-all"
+                  onClick={() => setIsOpen(false)}
+                >
+                  {link.label}
+                </a>
+              ))}
+            </div>
+            <div className="px-4 mt-4 pt-4 border-t border-border">
               <a
-                key={link.href}
-                href={link.href}
-                className="block px-4 py-3 text-foreground/70 hover:text-primary hover:bg-primary/8 rounded-xl transition-all text-sm font-medium"
+                href="#contact"
+                className="flex items-center justify-center gap-2 py-3 rounded-xl bg-primary text-primary-foreground text-sm font-bold"
                 onClick={() => setIsOpen(false)}
               >
-                {link.label}
+                Hire Me →
               </a>
-            ))}
-            <a
-              href="/24.21.TsedeysResume.pdf"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="flex items-center gap-2 mx-4 mt-3 px-4 py-2 rounded-full bg-primary text-primary-foreground text-sm font-semibold justify-center"
-              onClick={() => setIsOpen(false)}
-            >
-              <FileText size={15} />
-              Download Resume
-            </a>
+            </div>
           </div>
         )}
       </div>
