@@ -13,12 +13,46 @@ const roles = [
   'Software Engineer',
 ];
 
-const techStack = [
-  'TypeScript', 'React', 'Next.js', 'Angular', '.NET / C#',
-  'Node.js', 'PostgreSQL', 'React Native', 'Docker', 'Firebase',
-  // duplicated for seamless loop
-  'TypeScript', 'React', 'Next.js', 'Angular', '.NET / C#',
-  'Node.js', 'PostgreSQL', 'React Native', 'Docker', 'Firebase',
+// Row 1 — scrolls LEFT (frontend + backend)
+const techRow1 = [
+  { label: 'TypeScript',    emoji: '📘' },
+  { label: 'React',         emoji: '⚛️' },
+  { label: 'Next.js',       emoji: '▲' },
+  { label: 'Angular',       emoji: '🔴' },
+  { label: '.NET / C#',     emoji: '💜' },
+  { label: 'Node.js',       emoji: '🟩' },
+  { label: 'Tailwind CSS',  emoji: '🎨' },
+  { label: 'REST APIs',     emoji: '🔗' },
+  // duplicated for seamless infinite loop
+  { label: 'TypeScript',    emoji: '📘' },
+  { label: 'React',         emoji: '⚛️' },
+  { label: 'Next.js',       emoji: '▲' },
+  { label: 'Angular',       emoji: '🔴' },
+  { label: '.NET / C#',     emoji: '💜' },
+  { label: 'Node.js',       emoji: '🟩' },
+  { label: 'Tailwind CSS',  emoji: '🎨' },
+  { label: 'REST APIs',     emoji: '🔗' },
+];
+
+// Row 2 — scrolls RIGHT (languages + tools)
+const techRow2 = [
+  { label: 'PostgreSQL',    emoji: '🐘' },
+  { label: 'React Native',  emoji: '📱' },
+  { label: 'Docker',        emoji: '🐳' },
+  { label: 'Firebase',      emoji: '🔥' },
+  { label: 'Python',        emoji: '🐍' },
+  { label: 'Git & GitHub',  emoji: '🗂️' },
+  { label: 'Arduino',       emoji: '🔌' },
+  { label: 'Vercel',        emoji: '▲' },
+  // duplicated for seamless infinite loop
+  { label: 'PostgreSQL',    emoji: '🐘' },
+  { label: 'React Native',  emoji: '📱' },
+  { label: 'Docker',        emoji: '🐳' },
+  { label: 'Firebase',      emoji: '🔥' },
+  { label: 'Python',        emoji: '🐍' },
+  { label: 'Git & GitHub',  emoji: '🗂️' },
+  { label: 'Arduino',       emoji: '🔌' },
+  { label: 'Vercel',        emoji: '▲' },
 ];
 
 const socialLinks = [
@@ -284,27 +318,56 @@ const Hero = () => {
           </motion.div>
         </div>
 
-        {/* Tech Stack Marquee */}
+        {/* Tech Stack — Dual Counter-Rotating Marquee */}
         <motion.div
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 1.2, duration: 0.8 }}
-          className="mt-20 overflow-hidden"
+          className="mt-20"
         >
-          <p className="text-[11px] font-bold uppercase tracking-[0.2em] text-muted-foreground mb-4 text-center">
-            Tech Stack
-          </p>
-          <div className="relative">
-            <div className="absolute left-0 top-0 bottom-0 w-24 bg-gradient-to-r from-background to-transparent z-10 pointer-events-none" />
-            <div className="absolute right-0 top-0 bottom-0 w-24 bg-gradient-to-l from-background to-transparent z-10 pointer-events-none" />
+          {/* Label */}
+          <div className="flex items-center gap-4 mb-5">
+            <div className="flex-1 h-px bg-gradient-to-r from-transparent to-border" />
+            <p className="text-[11px] font-black uppercase tracking-[0.25em] text-muted-foreground shrink-0">
+              Tech Stack
+            </p>
+            <div className="flex-1 h-px bg-gradient-to-l from-transparent to-border" />
+          </div>
+
+          {/* 3D perspective wrapper */}
+          <div
+            className="relative overflow-hidden space-y-3"
+            style={{ perspective: '1000px' }}
+          >
+            {/* Fade edges */}
+            <div className="absolute left-0 top-0 bottom-0 w-28 bg-gradient-to-r from-background to-transparent z-10 pointer-events-none" />
+            <div className="absolute right-0 top-0 bottom-0 w-28 bg-gradient-to-l from-background to-transparent z-10 pointer-events-none" />
+
+            {/* Row 1 — scrolls LEFT */}
             <div className="flex overflow-hidden">
               <div className="marquee-track">
-                {techStack.map((tech, idx) => (
+                {techRow1.map((item, idx) => (
                   <span
-                    key={`${tech}-${idx}`}
-                    className="skill-pill shrink-0"
+                    key={`r1-${item.label}-${idx}`}
+                    className="skill-pill shrink-0 flex items-center gap-1.5"
                   >
-                    {tech}
+                    <span className="text-sm leading-none">{item.emoji}</span>
+                    {item.label}
+                  </span>
+                ))}
+              </div>
+            </div>
+
+            {/* Row 2 — scrolls RIGHT */}
+            <div className="flex overflow-hidden">
+              <div className="marquee-track-reverse">
+                {techRow2.map((item, idx) => (
+                  <span
+                    key={`r2-${item.label}-${idx}`}
+                    className="skill-pill shrink-0 flex items-center gap-1.5"
+                  >
+                    <span className="text-sm leading-none">{item.emoji}</span>
+                    {item.label}
                   </span>
                 ))}
               </div>
