@@ -37,12 +37,12 @@ const skillCategories = [
 ];
 
 const proficiencyAreas = [
-  { area: 'Full-Stack Web Development',   level: 90, color: '#22C55E' },
-  { area: 'Angular & .NET Enterprise',    level: 85, color: '#22C55E' },
-  { area: 'React / Next.js Development',  level: 88, color: '#A78BFA' },
-  { area: 'Database Design & SQL',        level: 85, color: '#A78BFA' },
-  { area: 'Mobile (React Native)',        level: 78, color: '#06B6D4' },
-  { area: 'Embedded Systems / IoT',       level: 72, color: '#F59E0B' },
+  { area: 'Full-Stack Web Development',   level: 90, color: '#2563EB' },
+  { area: 'Angular & .NET Enterprise',    level: 85, color: '#3B82F6' },
+  { area: 'React / Next.js Development',  level: 88, color: '#2563EB' },
+  { area: 'Database Design & SQL',        level: 85, color: '#3B82F6' },
+  { area: 'Mobile (React Native)',        level: 78, color: '#60A5FA' },
+  { area: 'Embedded Systems / IoT',       level: 72, color: '#1D4ED8' },
 ];
 
 // SVG ring component
@@ -91,7 +91,7 @@ const Skills = () => {
           <div className="flex flex-col md:flex-row md:items-end md:justify-between gap-4">
             <h2 className="text-[clamp(2rem,5vw,3.5rem)] font-black tracking-tight leading-none">
               Technical{' '}
-              <span className="clip-green">Skills</span>
+              <span className="clip-blue">Skills</span>
             </h2>
             <p className="text-base text-muted-foreground max-w-sm">
               Deep expertise across the full technology stack — from UI to embedded systems.
@@ -145,7 +145,7 @@ const Skills = () => {
                 <span className="font-semibold text-sm text-foreground/70 group-hover:text-primary transition-colors">
                   {skill}
                 </span>
-                <div className="w-1.5 h-1.5 rounded-full bg-border group-hover:bg-primary group-hover:shadow-[0_0_6px_rgba(34,197,94,0.8)] transition-all" />
+                <div className="w-1.5 h-1.5 rounded-full bg-border group-hover:bg-primary group-hover:shadow-[0_0_6px_rgba(37,99,235,0.8)] transition-all" />
               </motion.div>
             ))}
           </motion.div>
@@ -161,7 +161,7 @@ const Skills = () => {
           <div className="flex items-end justify-between mb-8">
             <h3 className="text-2xl font-black tracking-tight">
               Proficiency{' '}
-              <span className="clip-green">Overview</span>
+              <span className="clip-blue">Overview</span>
             </h3>
           </div>
 

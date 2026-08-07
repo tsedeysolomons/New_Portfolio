@@ -19,7 +19,7 @@ const projects = [
     link: 'http://49.12.194.224:8081/',
     github: 'https://github.com/tsedeysolomons/Trainer-pooling.git',
     featured: true,
-    accentColor: '#22C55E',
+    accentColor: '#2563EB',
   },
   {
     id: 2,
@@ -105,7 +105,7 @@ const Projects = () => {
           <div className="flex flex-col md:flex-row md:items-end md:justify-between gap-4">
             <h2 className="text-[clamp(2rem,5vw,3.5rem)] font-black tracking-tight leading-none">
               Featured{' '}
-              <span className="clip-green">Projects</span>
+              <span className="clip-blue">Projects</span>
             </h2>
             <a
               href="https://github.com/tsedeysolomons/"

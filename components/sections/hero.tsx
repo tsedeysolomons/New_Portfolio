@@ -1,20 +1,19 @@
 'use client';
 
 import { useEffect, useState } from 'react';
-import { Mail, Send, MapPin, ArrowDown, Download } from 'lucide-react';
-import { Github, Linkedin } from '@/components/icons';
+import { Mail, Send, MapPin, ArrowDown } from 'lucide-react';
+import { Github, Linkedin, Twitter } from '@/components/icons';
 import { motion } from 'framer-motion';
 import Image from 'next/image';
 
 const roles = [
+  'Developer',
+  'Software Engineer',
   'Full-Stack Developer',
   'Angular & .NET Engineer',
-  'React / Next.js Dev',
-  'TypeScript Specialist',
-  'Software Engineer',
+  'React / Next.js Developer',
 ];
 
-// Row 1 — scrolls LEFT (frontend + backend)
 const techRow1 = [
   { label: 'TypeScript',    emoji: '📘' },
   { label: 'React',         emoji: '⚛️' },
@@ -24,7 +23,7 @@ const techRow1 = [
   { label: 'Node.js',       emoji: '🟩' },
   { label: 'Tailwind CSS',  emoji: '🎨' },
   { label: 'REST APIs',     emoji: '🔗' },
-  // duplicated for seamless infinite loop
+  // duplicate for loop
   { label: 'TypeScript',    emoji: '📘' },
   { label: 'React',         emoji: '⚛️' },
   { label: 'Next.js',       emoji: '▲' },
@@ -35,7 +34,6 @@ const techRow1 = [
   { label: 'REST APIs',     emoji: '🔗' },
 ];
 
-// Row 2 — scrolls RIGHT (languages + tools)
 const techRow2 = [
   { label: 'PostgreSQL',    emoji: '🐘' },
   { label: 'React Native',  emoji: '📱' },
@@ -45,7 +43,7 @@ const techRow2 = [
   { label: 'Git & GitHub',  emoji: '🗂️' },
   { label: 'Arduino',       emoji: '🔌' },
   { label: 'Vercel',        emoji: '▲' },
-  // duplicated for seamless infinite loop
+  // duplicate for loop
   { label: 'PostgreSQL',    emoji: '🐘' },
   { label: 'React Native',  emoji: '📱' },
   { label: 'Docker',        emoji: '🐳' },
@@ -57,10 +55,11 @@ const techRow2 = [
 ];
 
 const socialLinks = [
-  { label: 'GitHub',   href: 'https://github.com/tsedeysolomons/',         icon: Github,   color: 'hover:border-white/30 hover:text-white' },
-  { label: 'LinkedIn', href: 'https://linkedin.com/in/tsedey-solomon',      icon: Linkedin, color: 'hover:border-blue-500/50 hover:text-blue-400' },
-  { label: 'Telegram', href: 'https://t.me/tsedi_sol',                      icon: Send,     color: 'hover:border-sky-500/50 hover:text-sky-400' },
-  { label: 'Email',    href: 'mailto:tsdeys19@gmail.com',                   icon: Mail,     color: 'hover:border-primary/50 hover:text-primary' },
+  { label: 'GitHub',   href: 'https://github.com/tsedeysolomons/',   icon: Github },
+  { label: 'LinkedIn', href: 'https://linkedin.com/in/tsedey-solomon', icon: Linkedin },
+  { label: 'Twitter',  href: 'https://x.com/TsedeySolomon',          icon: Twitter },
+  { label: 'Telegram', href: 'https://t.me/tsedi_sol',                icon: Send },
+  { label: 'Email',    href: 'mailto:tsdeys19@gmail.com',             icon: Mail },
 ];
 
 const Hero = () => {
@@ -79,7 +78,7 @@ const Hero = () => {
           setDisplayText(currentRole.slice(0, charIndex + 1));
           setCharIndex((c) => c + 1);
         } else {
-          setTimeout(() => setIsDeleting(true), 2000);
+          setTimeout(() => setIsDeleting(true), 2500);
         }
       } else {
         if (charIndex > 0) {
@@ -90,7 +89,7 @@ const Hero = () => {
           setRoleIndex((i) => (i + 1) % roles.length);
         }
       }
-    }, isDeleting ? 40 : 80);
+    }, isDeleting ? 30 : 60);
 
     return () => clearTimeout(timeout);
   }, [charIndex, isDeleting, roleIndex]);
@@ -102,253 +101,127 @@ const Hero = () => {
   return (
     <section
       id="hero"
-      className="relative min-h-screen flex flex-col justify-center overflow-hidden pt-[68px]"
+      className="relative min-h-screen flex flex-col justify-center overflow-hidden pt-[72px] pb-10"
     >
-      {/* Background — subtle grid + blobs */}
+      {/* Background Grid Pattern */}
       <div className="absolute inset-0 pointer-events-none">
-        {/* Grid pattern */}
         <div
           className="absolute inset-0 opacity-[0.02] dark:opacity-[0.03]"
           style={{
             backgroundImage: 'linear-gradient(var(--border) 1px, transparent 1px), linear-gradient(90deg, var(--border) 1px, transparent 1px)',
-            backgroundSize: '60px 60px',
+            backgroundSize: '70px 70px',
           }}
         />
-        {/* Green blob top-right */}
-        <div className="absolute -top-32 -right-32 w-[600px] h-[600px] bg-primary/8 rounded-full blur-[140px] animate-float" />
-        {/* Purple blob bottom-left */}
-        <div className="absolute -bottom-32 -left-32 w-[500px] h-[500px] bg-accent/6 rounded-full blur-[120px] animate-float" style={{ animationDelay: '2.5s' }} />
-        {/* Center subtle glow */}
-        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[400px] bg-primary/3 rounded-full blur-[160px]" />
+        {/* Glow Effects */}
+        <div className="absolute top-[20%] right-[-10%] w-[500px] h-[500px] bg-primary/10 rounded-full blur-[130px] animate-float" />
+        <div className="absolute bottom-[10%] left-[-10%] w-[400px] h-[400px] bg-primary/5 rounded-full blur-[110px]" />
       </div>
 
-      <div className="max-w-7xl mx-auto w-full px-5 sm:px-8 lg:px-10 py-16 relative z-10">
-        <div className="grid lg:grid-cols-2 gap-12 xl:gap-20 items-center">
+      <div className="max-w-7xl mx-auto w-full px-6 sm:px-8 lg:px-10 py-12 relative z-10">
+        <div className="grid lg:grid-cols-12 gap-12 lg:gap-8 items-center min-h-[70vh]">
 
-          {/* ── LEFT — Headline ── */}
+          {/* ── LEFT COLUMN: Text Block (spans 7 cols on desktop) ── */}
           <motion.div
-            initial={{ opacity: 0, x: -40 }}
-            animate={{ opacity: 1, x: 0 }}
-            transition={{ duration: 0.9, ease: 'easeOut' }}
-            className="space-y-8"
+            initial={{ opacity: 0, y: 30 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8, ease: 'easeOut' }}
+            className="lg:col-span-7 space-y-6 lg:pr-10"
           >
-            {/* Eyebrow */}
-            <motion.div
-              initial={{ opacity: 0, y: -10 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 0.1, duration: 0.5 }}
-              className="flex items-center gap-3"
-            >
-              <span className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-primary/10 border border-primary/20 text-primary text-[11px] font-bold uppercase tracking-[0.15em]">
-                <span className="w-1.5 h-1.5 rounded-full bg-primary animate-pulse" />
-                Available for work
-              </span>
-              <span className="flex items-center gap-1.5 text-[12px] text-muted-foreground font-medium">
-                <MapPin size={12} className="text-primary" />
-                Addis Ababa, ET
-              </span>
-            </motion.div>
-
-            {/* Giant Headline */}
-            <motion.div
-              initial={{ opacity: 0, y: 24 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 0.2, duration: 0.8 }}
-              className="space-y-2"
-            >
-              <h1 className="text-[clamp(3rem,7vw,5.5rem)] font-black leading-[0.95] tracking-[-0.03em]">
-                <span className="block text-foreground">I Build</span>
-                <span className="block clip-green">Digital</span>
-                <span className="block text-foreground">Experiences.</span>
-              </h1>
-            </motion.div>
-
-            {/* Typewriter role */}
-            <motion.div
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              transition={{ delay: 0.5, duration: 0.5 }}
-              className="flex items-center gap-2 h-8"
-            >
-              <span className="text-lg md:text-xl font-semibold text-muted-foreground">
-                {displayText}
-              </span>
-              <span className="w-0.5 h-6 bg-primary rounded-full animate-cursor" />
-            </motion.div>
-
-            {/* Bio */}
-            <motion.p
-              initial={{ opacity: 0, y: 16 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 0.6, duration: 0.6 }}
-              className="text-base md:text-lg text-foreground/55 leading-relaxed max-w-lg"
-            >
-              Specialized in crafting performant, high-scale digital solutions —
-              bridging beautiful frontends with robust backends at{' '}
-              <span className="text-foreground/80 font-semibold">DAF Tech Computer</span>.
-            </motion.p>
-
-            {/* CTA Buttons */}
-            <motion.div
-              initial={{ opacity: 0, y: 16 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 0.75, duration: 0.5 }}
-              className="flex flex-wrap gap-4"
-            >
-              <button
-                id="view-work-btn"
-                onClick={() => scrollToSection('projects')}
-                className="group flex items-center gap-2.5 px-8 py-3.5 rounded-xl bg-primary text-primary-foreground font-bold text-sm hover:shadow-xl hover:shadow-primary/30 hover:scale-[1.03] transition-all duration-300"
-              >
-                View My Work
-                <ArrowDown size={15} className="group-hover:translate-y-0.5 transition-transform" />
-              </button>
-              <a
-                href="/24.21.TsedeysResume.pdf"
-                target="_blank"
-                rel="noopener noreferrer"
-                id="download-resume-btn"
-                className="group flex items-center gap-2.5 px-8 py-3.5 rounded-xl border border-border text-foreground/70 font-bold text-sm hover:border-primary/50 hover:text-foreground hover:bg-primary/5 transition-all duration-300"
-              >
-                <Download size={15} className="text-primary" />
-                Resume
-              </a>
-            </motion.div>
-
-            {/* Social Links */}
-            <motion.div
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              transition={{ delay: 0.9, duration: 0.5 }}
-              className="flex items-center gap-2 pt-2"
-            >
-              {socialLinks.map((social, idx) => {
+            {/* Social Icons row (top left of text) */}
+            <div className="flex gap-2.5">
+              {socialLinks.map((social) => {
                 const Icon = social.icon;
                 return (
-                  <motion.a
+                  <a
                     key={social.label}
                     href={social.href}
                     target="_blank"
                     rel="noopener noreferrer"
                     aria-label={social.label}
-                    initial={{ opacity: 0, y: 8 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    transition={{ delay: 0.95 + idx * 0.07, duration: 0.4 }}
-                    className={`w-10 h-10 rounded-xl border border-border flex items-center justify-center text-muted-foreground transition-all duration-200 ${social.color}`}
+                    className="w-10 h-10 rounded-xl bg-primary/10 border border-primary/20 flex items-center justify-center text-primary hover:bg-primary hover:text-white transition-all duration-200"
                   >
-                    <Icon size={17} />
-                  </motion.a>
+                    <Icon size={16} />
+                  </a>
                 );
               })}
-            </motion.div>
-          </motion.div>
-
-          {/* ── RIGHT — Avatar Bento ── */}
-          <motion.div
-            initial={{ opacity: 0, x: 40 }}
-            animate={{ opacity: 1, x: 0 }}
-            transition={{ duration: 0.9, ease: 'easeOut', delay: 0.15 }}
-            className="flex flex-col items-center gap-6"
-          >
-            {/* Avatar card — geometric frame */}
-            <div className="relative w-full max-w-sm">
-              {/* Outer decorative ring */}
-              <div className="absolute -inset-px rounded-3xl bg-gradient-to-br from-primary/40 via-primary/10 to-accent/20 blur-sm" />
-              <div className="relative bento-card p-6 flex flex-col items-center gap-6 overflow-hidden">
-                {/* Geometric pattern background */}
-                <div className="absolute top-0 right-0 w-40 h-40 bg-primary/5 rounded-full blur-3xl" />
-                <div className="absolute bottom-0 left-0 w-32 h-32 bg-accent/5 rounded-full blur-2xl" />
-
-                {/* Avatar */}
-                <div className="relative">
-                  <div className="w-40 h-40 rounded-2xl overflow-hidden border-2 border-primary/30 shadow-2xl shadow-primary/20 animate-pulse-glow relative">
-                    <Image
-                      src="/profile.jpg"
-                      alt="Tsedey Solomon"
-                      fill
-                      priority
-                      className="object-cover"
-                    />
-                  </div>
-                  {/* Online badge */}
-                  <div className="absolute -bottom-2 -right-2 glass px-3 py-1.5 rounded-xl flex items-center gap-1.5 text-xs font-bold shadow-lg">
-                    <span className="w-2 h-2 rounded-full bg-primary animate-pulse" />
-                    <span className="text-foreground/80">Open to Work</span>
-                  </div>
-                </div>
-
-                {/* Name + Title */}
-                <div className="text-center relative z-10">
-                  <h2 className="text-xl font-black text-foreground tracking-tight">Tsedey Solomon</h2>
-                  <p className="text-sm text-muted-foreground mt-1">Full-Stack Software Developer</p>
-                </div>
-
-                {/* Stat chips */}
-                <div className="grid grid-cols-3 gap-3 w-full relative z-10">
-                  {[
-                    { value: '3+',   label: 'Years Exp.' },
-                    { value: '15+',  label: 'Projects' },
-                    { value: '500+', label: 'Commits' },
-                  ].map((stat, idx) => (
-                    <motion.div
-                      key={stat.label}
-                      initial={{ opacity: 0, scale: 0.8 }}
-                      animate={{ opacity: 1, scale: 1 }}
-                      transition={{ delay: 0.8 + idx * 0.1, duration: 0.4 }}
-                      className="flex flex-col items-center py-3 rounded-xl bg-muted/50 border border-border/50"
-                    >
-                      <span className="text-xl font-black text-primary leading-none">{stat.value}</span>
-                      <span className="text-[9px] font-bold uppercase tracking-widest text-muted-foreground mt-1 text-center">{stat.label}</span>
-                    </motion.div>
-                  ))}
-                </div>
-              </div>
             </div>
 
-            {/* Mini about chip */}
-            <motion.div
-              initial={{ opacity: 0, y: 10 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 1.1, duration: 0.5 }}
-              className="w-full max-w-sm bento-card p-4 flex items-center gap-4"
-            >
-              <div className="w-10 h-10 rounded-xl bg-primary/10 flex items-center justify-center shrink-0">
-                <span className="text-xl">💻</span>
-              </div>
-              <div>
-                <p className="text-xs font-bold text-foreground">Currently at DAF Tech Computer</p>
-                <p className="text-[11px] text-muted-foreground mt-0.5">Full-Stack Developer · Addis Ababa</p>
-              </div>
-            </motion.div>
+            {/* Typewriter Title */}
+            <div className="space-y-2">
+              <h1 className="text-4xl sm:text-5xl md:text-6xl font-black tracking-tight leading-[1.1] text-foreground">
+                I&apos;m a <span className="clip-blue inline-block">{displayText}</span>
+                <span className="w-1 h-[40px] sm:h-[50px] md:h-[60px] ml-1 bg-primary inline-block animate-cursor align-middle" />
+              </h1>
+            </div>
+
+            {/* Description */}
+            <p className="text-base sm:text-lg text-foreground/60 leading-relaxed max-w-xl">
+              I am a Software Developer with extensive experience of 3+ years. My expertise is to build and design performant full-stack applications, mobile apps, and embedded systems at <span className="text-primary font-semibold">DAF Tech Computer</span>.
+            </p>
+
+            {/* CTA Buttons */}
+            <div className="flex flex-wrap gap-4 pt-4">
+              <button
+                onClick={() => scrollToSection('projects')}
+                className="px-8 py-3.5 rounded-full bg-primary text-white font-bold text-xs uppercase tracking-widest hover:bg-blue-700 hover:shadow-lg hover:shadow-primary/30 transition-all duration-200"
+              >
+                My Work
+              </button>
+              <button
+                onClick={() => scrollToSection('contact')}
+                className="px-8 py-3.5 rounded-full border-2 border-foreground text-foreground font-bold text-xs uppercase tracking-widest hover:border-primary hover:text-primary transition-all duration-200"
+              >
+                Hire Me
+              </button>
+            </div>
+          </motion.div>
+
+          {/* ── RIGHT COLUMN: Portrait Image Block (spans 5 cols on desktop) ── */}
+          <motion.div
+            initial={{ opacity: 0, scale: 0.95 }}
+            animate={{ opacity: 1, scale: 1 }}
+            transition={{ duration: 0.9, delay: 0.2 }}
+            className="lg:col-span-5 flex justify-center"
+          >
+            <div className="relative w-full max-w-sm aspect-[4/5] sm:aspect-[3/4] lg:aspect-[4/5] rounded-[2rem] overflow-hidden border border-border shadow-2xl group">
+              {/* Grayscale portrait of Tsedey */}
+              <Image
+                src="/profile.jpg"
+                alt="Tsedey Solomon Portrait"
+                fill
+                priority
+                className="object-cover grayscale contrast-[1.20] brightness-[0.95] group-hover:scale-105 transition-transform duration-700"
+              />
+              {/* Radial gradient mask overlay to blend profile smoothly */}
+              <div className="absolute inset-0 bg-gradient-to-t from-background via-transparent to-transparent opacity-95" />
+              <div className="absolute inset-0 bg-gradient-to-r from-background via-transparent to-transparent opacity-40" />
+              <div className="absolute inset-0 bg-gradient-to-l from-background via-transparent to-transparent opacity-20" />
+            </div>
           </motion.div>
         </div>
 
-        {/* Tech Stack — Dual Counter-Rotating Marquee */}
+        {/* Counter-rotating Tech stack row at the bottom */}
         <motion.div
-          initial={{ opacity: 0, y: 20 }}
+          initial={{ opacity: 0, y: 15 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 1.2, duration: 0.8 }}
-          className="mt-20"
+          transition={{ delay: 1.1, duration: 0.6 }}
+          className="mt-16"
         >
-          {/* Label */}
-          <div className="flex items-center gap-4 mb-5">
+          {/* Divider */}
+          <div className="flex items-center gap-4 mb-6">
             <div className="flex-1 h-px bg-gradient-to-r from-transparent to-border" />
-            <p className="text-[11px] font-black uppercase tracking-[0.25em] text-muted-foreground shrink-0">
-              Tech Stack
-            </p>
+            <span className="text-[10px] font-black uppercase tracking-[0.3em] text-muted-foreground shrink-0">
+              Expertise
+            </span>
             <div className="flex-1 h-px bg-gradient-to-l from-transparent to-border" />
           </div>
 
-          {/* 3D perspective wrapper */}
-          <div
-            className="relative overflow-hidden space-y-3"
-            style={{ perspective: '1000px' }}
-          >
-            {/* Fade edges */}
-            <div className="absolute left-0 top-0 bottom-0 w-28 bg-gradient-to-r from-background to-transparent z-10 pointer-events-none" />
-            <div className="absolute right-0 top-0 bottom-0 w-28 bg-gradient-to-l from-background to-transparent z-10 pointer-events-none" />
+          <div className="relative overflow-hidden space-y-3" style={{ perspective: '1000px' }}>
+            {/* Fade overlays on sides */}
+            <div className="absolute left-0 top-0 bottom-0 w-24 bg-gradient-to-r from-background to-transparent z-10 pointer-events-none" />
+            <div className="absolute right-0 top-0 bottom-0 w-24 bg-gradient-to-l from-background to-transparent z-10 pointer-events-none" />
 
-            {/* Row 1 — scrolls LEFT */}
+            {/* Row 1 — left */}
             <div className="flex overflow-hidden">
               <div className="marquee-track">
                 {techRow1.map((item, idx) => (
@@ -363,7 +236,7 @@ const Hero = () => {
               </div>
             </div>
 
-            {/* Row 2 — scrolls RIGHT */}
+            {/* Row 2 — right */}
             <div className="flex overflow-hidden">
               <div className="marquee-track-reverse">
                 {techRow2.map((item, idx) => (

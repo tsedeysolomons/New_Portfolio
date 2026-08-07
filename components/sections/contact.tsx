@@ -57,7 +57,7 @@ const Contact = () => {
           </span>
           <h2 className="text-[clamp(2rem,5vw,3.5rem)] font-black tracking-tight leading-none">
             Got a project{' '}
-            <span className="clip-green">in mind?</span>
+            <span className="clip-blue">in mind?</span>
           </h2>
         </motion.div>
 
@@ -71,7 +71,7 @@ const Contact = () => {
             transition={{ duration: 0.7 }}
             className="lg:col-span-3 bento-card p-10 md:p-12 flex flex-col justify-between min-h-[440px] overflow-hidden relative"
           >
-            {/* Decorative green glow */}
+            {/* Decorative blue glow */}
             <div className="absolute -top-20 -right-20 w-64 h-64 bg-primary/10 rounded-full blur-3xl pointer-events-none" />
 
             <div className="relative z-10 space-y-6">
@@ -82,7 +82,7 @@ const Contact = () => {
               <div>
                 <h3 className="text-3xl md:text-4xl font-black tracking-tight text-foreground mb-3">
                   Let&apos;s work<br />
-                  <span className="clip-green">together.</span>
+                  <span className="clip-blue">together.</span>
                 </h3>
                 <p className="text-foreground/55 text-base leading-relaxed max-w-md">
                   I&apos;m always open to discussing new opportunities, interesting

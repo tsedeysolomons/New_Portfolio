@@ -62,7 +62,7 @@ const competencies = [
 ];
 
 const statusColors: Record<string, string> = {
-  Active: 'bg-green-500/15 text-green-500',
+  Active: 'bg-blue-500/15 text-blue-500',
   Completed: 'bg-primary/10 text-primary',
 };
 
