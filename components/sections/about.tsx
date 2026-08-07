@@ -27,8 +27,8 @@ const coreValues = [
 ];
 
 const stats = [
-  { value: '10+', label: 'Projects Completed', color: 'text-primary' },
-  { value: '2+', label: 'Years Experience', color: 'text-pink-400' },
+  { value: '15+', label: 'Projects Completed', color: 'text-primary' },
+  { value: '3+', label: 'Years Experience', color: 'text-pink-400' },
   { value: '500+', label: 'Code Commits', color: 'text-amber-400' },
 ];
 

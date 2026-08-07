@@ -218,8 +218,8 @@ const Hero = () => {
               className="grid grid-cols-3 gap-4 w-full max-w-sm"
             >
               {[
-                { value: '2+', label: 'Years Exp.' },
-                { value: '10+', label: 'Projects' },
+                { value: '3+', label: 'Years Exp.' },
+                { value: '15+', label: 'Projects' },
                 { value: '500+', label: 'Commits' },
               ].map((stat, idx) => (
                 <motion.div
