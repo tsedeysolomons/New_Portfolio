@@ -4,6 +4,7 @@ import { useEffect, useState } from 'react';
 import { Mail, Send, MapPin, ArrowDown, Download } from 'lucide-react';
 import { Github, Linkedin } from '@/components/icons';
 import { motion } from 'framer-motion';
+import Image from 'next/image';
 
 const roles = [
   'Full-Stack Developer',
@@ -260,10 +261,14 @@ const Hero = () => {
 
                 {/* Avatar */}
                 <div className="relative">
-                  <div className="w-40 h-40 rounded-2xl overflow-hidden border-2 border-primary/30 shadow-2xl shadow-primary/20 animate-pulse-glow">
-                    <div className="w-full h-full bg-gradient-to-br from-primary/20 via-primary/10 to-accent/20 flex items-center justify-center">
-                      <span className="text-6xl font-black clip-green select-none">TS</span>
-                    </div>
+                  <div className="w-40 h-40 rounded-2xl overflow-hidden border-2 border-primary/30 shadow-2xl shadow-primary/20 animate-pulse-glow relative">
+                    <Image
+                      src="/profile.jpg"
+                      alt="Tsedey Solomon"
+                      fill
+                      priority
+                      className="object-cover"
+                    />
                   </div>
                   {/* Online badge */}
                   <div className="absolute -bottom-2 -right-2 glass px-3 py-1.5 rounded-xl flex items-center gap-1.5 text-xs font-bold shadow-lg">

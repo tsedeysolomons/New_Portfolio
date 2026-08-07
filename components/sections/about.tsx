@@ -2,6 +2,7 @@
 
 import { Zap, Heart, Coffee, MapPin, Mail, ArrowRight } from 'lucide-react';
 import { motion } from 'framer-motion';
+import Image from 'next/image';
 
 const coreValues = [
   {
@@ -75,24 +76,38 @@ const About = () => {
             transition={{ duration: 0.7 }}
             className="lg:col-span-2 bento-card p-8 md:p-10 flex flex-col justify-between min-h-[300px] overflow-hidden"
           >
-            <div className="space-y-6">
-              <blockquote className="text-[clamp(1.6rem,3.5vw,2.5rem)] font-black leading-[1.1] tracking-tight text-foreground">
-                "Code is my craft,{' '}
-                <span className="clip-green">performance</span>{' '}
-                is my religion."
-              </blockquote>
-              <div className="space-y-4 text-base text-foreground/60 leading-relaxed max-w-2xl">
-                <p>
-                  I&apos;m <span className="text-foreground font-semibold">Tsedey Solomon</span>, a
-                  Full-Stack Software Developer based in Addis Ababa, Ethiopia.
-                  I&apos;ve spent 3+ years mastering full-stack engineering — bridging complex
-                  backend architectures with intuitive, high-performance user interfaces.
-                </p>
-                <p>
-                  With experience spanning Angular, React, .NET, and Node.js, I work full-time at{' '}
-                  <span className="text-primary font-semibold">DAF Tech Computer</span> and
-                  actively take on freelance projects that challenge me to grow.
-                </p>
+            <div className="grid md:grid-cols-5 gap-8 items-center">
+              {/* Text Side (3 cols) */}
+              <div className="md:col-span-3 space-y-6">
+                <blockquote className="text-[clamp(1.6rem,3.5vw,2.5rem)] font-black leading-[1.1] tracking-tight text-foreground">
+                  "Code is my craft,{' '}
+                  <span className="clip-green">performance</span>{' '}
+                  is my religion."
+                </blockquote>
+                <div className="space-y-4 text-base text-foreground/60 leading-relaxed">
+                  <p>
+                    I&apos;m <span className="text-foreground font-semibold">Tsedey Solomon</span>, a
+                    Full-Stack Software Developer based in Addis Ababa, Ethiopia.
+                    I&apos;ve spent 3+ years mastering full-stack engineering — bridging complex
+                    backend architectures with intuitive, high-performance user interfaces.
+                  </p>
+                  <p>
+                    With experience spanning Angular, React, .NET, and Node.js, I work full-time at{' '}
+                    <span className="text-primary font-semibold">DAF Tech Computer</span> and
+                    actively take on freelance projects that challenge me to grow.
+                  </p>
+                </div>
+              </div>
+              
+              {/* Image Side (2 cols) */}
+              <div className="md:col-span-2 relative h-64 md:h-full min-h-[250px] rounded-2xl overflow-hidden border border-border shadow-md">
+                <Image
+                  src="/profile.jpg"
+                  alt="Tsedey Solomon Portrait"
+                  fill
+                  priority
+                  className="object-cover hover:scale-[1.03] transition-transform duration-500"
+                />
               </div>
             </div>
             <div className="flex flex-wrap gap-4 pt-6 border-t border-border mt-6">
