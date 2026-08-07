@@ -106,18 +106,6 @@ const Hero = () => {
     >
       {/* Background — subtle grid + blobs */}
       <div className="absolute inset-0 pointer-events-none">
-        {/* Code background texture */}
-        <div
-          className="absolute inset-0 opacity-[0.12] dark:opacity-[0.25] transition-opacity duration-300"
-          style={{
-            backgroundImage: 'url("/bg-code.png")',
-            backgroundSize: 'cover',
-            backgroundPosition: 'center',
-            backgroundRepeat: 'no-repeat',
-            maskImage: 'radial-gradient(circle at center, black 30%, transparent 80%)',
-            WebkitMaskImage: 'radial-gradient(circle at center, black 30%, transparent 80%)',
-          }}
-        />
         {/* Grid pattern */}
         <div
           className="absolute inset-0 opacity-[0.02] dark:opacity-[0.03]"
