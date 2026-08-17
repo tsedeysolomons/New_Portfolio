@@ -93,7 +93,7 @@ const Footer = () => {
               })}
             </div>
             <a
-              href="/24.21.TsedeysResume.pdf"
+              href="/Tsedey_Solomon_Resume.pdf"
               target="_blank"
               rel="noopener noreferrer"
               className="inline-flex items-center gap-2 px-5 py-2.5 rounded-xl bg-primary text-primary-foreground text-sm font-bold hover:shadow-lg hover:shadow-primary/30 hover:scale-[1.02] transition-all"
