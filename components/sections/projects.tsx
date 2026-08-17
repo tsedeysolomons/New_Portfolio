@@ -3,6 +3,7 @@
 import { ExternalLink, ArrowUpRight } from 'lucide-react';
 import { Github } from '@/components/icons';
 import { motion } from 'framer-motion';
+import Image from 'next/image';
 
 const projects = [
   {
@@ -13,7 +14,7 @@ const projects = [
     description:
       'Streamlining professional trainer mobilization for the Ethiopian Midwives Association. A centralized, data-driven platform optimizing nationwide trainer allocation across Ethiopia\'s healthcare education network.',
     tech: ['Angular', 'Tailwind CSS', 'C#', '.NET'],
-    emoji: '🏥',
+    image: '/trainerpooling.png',
     status: 'Live',
     statusColor: 'bg-primary/15 text-primary border-primary/20',
     link: 'http://49.12.194.224:8081/',
@@ -27,45 +28,77 @@ const projects = [
     title: 'Ethiopian Midr Babur E-Ticket',
     subtitle: 'Digital Transport Ticketing System',
     description:
-      'Digital transportation ticket management with online booking, payment integration, and real-time tracking for Ethiopian railway transport services.',
-    tech: ['PHP', 'MySQL', 'JavaScript', 'Bootstrap'],
-    emoji: '🎫',
+      'EMBE-T is a digital ticketing system designed to modernize public transportation in Ethiopia with online booking, payment integration, and real-time tracking.',
+    tech: ['React', 'Node.js', 'Prisma', 'MySQL'],
+    image: '/eticket.png',
     status: 'Completed',
     statusColor: 'bg-accent/15 text-accent border-accent/20',
     link: '#',
-    github: '#',
+    github: 'https://github.com/tsedeysolomons/EMBE-T.git',
     featured: false,
     accentColor: '#A78BFA',
   },
   {
     id: 3,
     num: '03',
-    title: 'Bible Mobile App',
-    subtitle: 'Offline Reader — Amharic & English',
+    title: 'E-Combinator Platform',
+    subtitle: 'Startup Incubation & Collaboration Hub',
     description:
-      'React Native app with full offline Bible reading in Amharic & English. Beautiful typography, chapter navigation, and bookmarking.',
-    tech: ['React Native', 'Expo', 'Firebase'],
-    emoji: '📖',
+      'Developed for i-cog labs, E-Combinator is a digital startup accelerator platform that connects Ethiopian innovators and investors.',
+    tech: ['Next.js', 'PostgreSQL', 'Node.js', 'Tailwind CSS'],
+    image: '/ecombinator.png',
     status: 'Completed',
     statusColor: 'bg-cyan-500/15 text-cyan-400 border-cyan-500/20',
     link: '#',
-    github: '#',
+    github: 'https://github.com/tsedeysolomons/E-COMBINATOR.git',
     featured: false,
     accentColor: '#06B6D4',
   },
   {
     id: 4,
     num: '04',
-    title: 'E-Combinator Platform',
-    subtitle: 'Startup Incubation & Collaboration Hub',
+    title: 'SkillSwap Platform',
+    subtitle: 'Skill-Sharing Mobile App',
     description:
-      'Startup incubation platform inspired by Y Combinator with smart matching algorithms between founders and investors, plus collaboration tools.',
-    tech: ['React', 'Node.js', 'PostgreSQL', 'Stripe'],
-    emoji: '🚀',
-    status: 'In Progress',
+      'A skill-sharing platform built with React Native, allowing users to exchange skills and services through profiles, chat, and scheduling features.',
+    tech: ['React Native', 'Firebase', 'Chat', 'Scheduling'],
+    image: '/skillswap.png',
+    status: 'Completed',
+    statusColor: 'bg-emerald-500/15 text-emerald-400 border-emerald-500/20',
+    link: '#',
+    github: 'https://github.com/tsedeysolomons/SkillSwap.git',
+    featured: false,
+    accentColor: '#10B981',
+  },
+  {
+    id: 5,
+    num: '05',
+    title: 'BGS Restaurant Menu',
+    subtitle: 'Digital Restaurant Menu System',
+    description:
+      'Fully responsive digital menu with categories, real-time shopping cart, advanced search and filtering system for mobile and desktop.',
+    tech: ['Next.js 15', 'Supabase', 'Prisma', 'React'],
+    image: '/bgs-restaurant.png',
+    status: 'Completed',
+    statusColor: 'bg-orange-500/15 text-orange-400 border-orange-500/20',
+    link: '#',
+    github: 'https://github.com/tsedeysolomons/BGS-Restaurant_Menu.git',
+    featured: false,
+    accentColor: '#F97316',
+  },
+  {
+    id: 6,
+    num: '06',
+    title: 'Have Fashion Inventory',
+    subtitle: 'Inventory Management System',
+    description:
+      'A modern web-based inventory management system for a men\'s clothing store called Have Fashion with dashboard analytics and stock tracking.',
+    tech: ['React', 'Tailwind CSS', 'Dashboard', 'Inventory'],
+    image: '/havefashion.png',
+    status: 'Completed',
     statusColor: 'bg-amber-500/15 text-amber-400 border-amber-500/20',
     link: '#',
-    github: '#',
+    github: 'https://github.com/tsedeysolomons/have-fashi-inventory-system.git',
     featured: false,
     accentColor: '#F59E0B',
   },
@@ -129,24 +162,29 @@ const Projects = () => {
           className="bento-card mb-5 overflow-hidden group"
         >
           <div className="grid lg:grid-cols-2">
-            {/* Visual side */}
+            {/* Visual side — Real screenshot */}
             <div
-              className="relative min-h-[260px] lg:min-h-[360px] flex items-center justify-center overflow-hidden"
+              className="relative min-h-[260px] lg:min-h-[360px] overflow-hidden"
               style={{ background: `radial-gradient(ellipse at center, ${featured.accentColor}18 0%, transparent 70%)` }}
             >
               {/* Large number watermark */}
               <span
-                className="absolute top-4 left-6 project-num select-none"
-                style={{ color: `${featured.accentColor}15` }}
+                className="absolute top-4 left-6 project-num select-none z-10"
+                style={{ color: `${featured.accentColor}25` }}
               >
                 {featured.num}
               </span>
-              {/* Emoji */}
-              <span className="text-[9rem] select-none group-hover:scale-105 transition-transform duration-500 drop-shadow-2xl">
-                {featured.emoji}
-              </span>
+              {/* Project screenshot */}
+              <Image
+                src={featured.image}
+                alt={featured.title}
+                fill
+                className="object-cover group-hover:scale-105 transition-transform duration-700"
+                sizes="(max-width: 1024px) 100vw, 50vw"
+              />
               {/* Gradient overlay */}
-              <div className="absolute inset-0 bg-gradient-to-r from-transparent to-card/50 lg:block hidden" />
+              <div className="absolute inset-0 bg-gradient-to-r from-transparent via-transparent to-card/80 lg:block hidden z-[1]" />
+              <div className="absolute inset-0 bg-gradient-to-t from-card/60 to-transparent lg:hidden z-[1]" />
             </div>
 
             {/* Content side */}
@@ -223,20 +261,26 @@ const Projects = () => {
               variants={itemVariants}
               className="bento-card group overflow-hidden flex flex-col"
             >
-              {/* Visual header */}
+              {/* Visual header — Real screenshot */}
               <div
-                className="relative h-44 flex items-center justify-center overflow-hidden"
-                style={{ background: `radial-gradient(ellipse at center, ${project.accentColor}15 0%, transparent 70%)` }}
+                className="relative h-48 overflow-hidden"
               >
+                <Image
+                  src={project.image}
+                  alt={project.title}
+                  fill
+                  className="object-cover group-hover:scale-110 transition-transform duration-500"
+                  sizes="(max-width: 768px) 100vw, 33vw"
+                />
+                {/* Number watermark */}
                 <span
-                  className="absolute top-3 left-4 text-5xl font-black select-none"
-                  style={{ color: `${project.accentColor}15` }}
+                  className="absolute top-3 left-4 text-5xl font-black select-none z-10"
+                  style={{ color: `${project.accentColor}30` }}
                 >
                   {project.num}
                 </span>
-                <span className="text-6xl select-none group-hover:scale-110 transition-transform duration-300 drop-shadow-lg">
-                  {project.emoji}
-                </span>
+                {/* Bottom gradient for readability */}
+                <div className="absolute inset-0 bg-gradient-to-t from-card/70 via-transparent to-transparent" />
               </div>
 
               {/* Content */}
@@ -303,3 +347,4 @@ const Projects = () => {
 };
 
 export default Projects;
+
