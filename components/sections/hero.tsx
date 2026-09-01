@@ -15,51 +15,51 @@ const roles = [
 ];
 
 const techRow1 = [
-  { label: 'TypeScript',    emoji: '📘' },
-  { label: 'React',         emoji: '⚛️' },
-  { label: 'Next.js',       emoji: '▲' },
-  { label: 'Angular',       emoji: '🔴' },
-  { label: '.NET / C#',     emoji: '💜' },
-  { label: 'Node.js',       emoji: '🟩' },
-  { label: 'Tailwind CSS',  emoji: '🎨' },
-  { label: 'REST APIs',     emoji: '🔗' },
+  { label: 'TypeScript', emoji: '📘' },
+  { label: 'React', emoji: '⚛️' },
+  { label: 'Next.js', emoji: '▲' },
+  { label: 'Angular', emoji: '🔴' },
+  { label: '.NET / C#', emoji: '💜' },
+  { label: 'Node.js', emoji: '🟩' },
+  { label: 'Tailwind CSS', emoji: '🎨' },
+  { label: 'REST APIs', emoji: '🔗' },
   // duplicate for loop
-  { label: 'TypeScript',    emoji: '📘' },
-  { label: 'React',         emoji: '⚛️' },
-  { label: 'Next.js',       emoji: '▲' },
-  { label: 'Angular',       emoji: '🔴' },
-  { label: '.NET / C#',     emoji: '💜' },
-  { label: 'Node.js',       emoji: '🟩' },
-  { label: 'Tailwind CSS',  emoji: '🎨' },
-  { label: 'REST APIs',     emoji: '🔗' },
+  { label: 'TypeScript', emoji: '📘' },
+  { label: 'React', emoji: '⚛️' },
+  { label: 'Next.js', emoji: '▲' },
+  { label: 'Angular', emoji: '🔴' },
+  { label: '.NET / C#', emoji: '💜' },
+  { label: 'Node.js', emoji: '🟩' },
+  { label: 'Tailwind CSS', emoji: '🎨' },
+  { label: 'REST APIs', emoji: '🔗' },
 ];
 
 const techRow2 = [
-  { label: 'PostgreSQL',    emoji: '🐘' },
-  { label: 'React Native',  emoji: '📱' },
-  { label: 'Docker',        emoji: '🐳' },
-  { label: 'Firebase',      emoji: '🔥' },
-  { label: 'Python',        emoji: '🐍' },
-  { label: 'Git & GitHub',  emoji: '🗂️' },
-  { label: 'Arduino',       emoji: '🔌' },
-  { label: 'Vercel',        emoji: '▲' },
+  { label: 'PostgreSQL', emoji: '🐘' },
+  { label: 'React Native', emoji: '📱' },
+  { label: 'Docker', emoji: '🐳' },
+  { label: 'Firebase', emoji: '🔥' },
+  { label: 'Python', emoji: '🐍' },
+  { label: 'Git & GitHub', emoji: '🗂️' },
+  { label: 'Arduino', emoji: '🔌' },
+  { label: 'Vercel', emoji: '▲' },
   // duplicate for loop
-  { label: 'PostgreSQL',    emoji: '🐘' },
-  { label: 'React Native',  emoji: '📱' },
-  { label: 'Docker',        emoji: '🐳' },
-  { label: 'Firebase',      emoji: '🔥' },
-  { label: 'Python',        emoji: '🐍' },
-  { label: 'Git & GitHub',  emoji: '🗂️' },
-  { label: 'Arduino',       emoji: '🔌' },
-  { label: 'Vercel',        emoji: '▲' },
+  { label: 'PostgreSQL', emoji: '🐘' },
+  { label: 'React Native', emoji: '📱' },
+  { label: 'Docker', emoji: '🐳' },
+  { label: 'Firebase', emoji: '🔥' },
+  { label: 'Python', emoji: '🐍' },
+  { label: 'Git & GitHub', emoji: '🗂️' },
+  { label: 'Arduino', emoji: '🔌' },
+  { label: 'Vercel', emoji: '▲' },
 ];
 
 const socialLinks = [
-  { label: 'GitHub',   href: 'https://github.com/tsedeysolomons/',   icon: Github },
+  { label: 'GitHub', href: 'https://github.com/tsedeysolomons/', icon: Github },
   { label: 'LinkedIn', href: 'https://linkedin.com/in/tsedey-solomon', icon: Linkedin },
-  { label: 'Twitter',  href: 'https://x.com/TsedeySolomon',          icon: Twitter },
-  { label: 'Telegram', href: 'https://t.me/tsedi_sol',                icon: Send },
-  { label: 'Email',    href: 'mailto:tsdeys19@gmail.com',             icon: Mail },
+  { label: 'Twitter', href: 'https://x.com/TsedeySolomon', icon: Twitter },
+  { label: 'Telegram', href: 'https://t.me/tsedi_sol', icon: Send },
+  { label: 'Email', href: 'mailto:tsdeys19@gmail.com', icon: Mail },
 ];
 
 const Hero = () => {
@@ -156,7 +156,7 @@ const Hero = () => {
 
             {/* Description */}
             <p className="text-base sm:text-lg text-foreground/60 leading-relaxed max-w-xl">
-              I am a Software Developer with extensive experience of 3+ years. My expertise is to build and design performant full-stack applications, mobile apps, and embedded systems at <span className="text-primary font-semibold">DAF Tech Computer</span>.
+              I am a Software Developer with extensive experience of 2+ years. My expertise is to build and design performant full-stack applications, mobile apps, and embedded systems at <span className="text-primary font-semibold">DAF Tech Computer</span>.
             </p>
 
             {/* CTA Buttons */}

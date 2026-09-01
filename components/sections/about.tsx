@@ -6,17 +6,17 @@ import Image from 'next/image';
 
 const skillBars = [
   { name: 'Full-Stack Web Dev', level: 90 },
-  { name: 'Angular & .NET',     level: 85 },
-  { name: 'React & Next.js',    level: 88 },
+  { name: 'Angular & .NET', level: 85 },
+  { name: 'React & Next.js', level: 88 },
 ];
 
 const stats = [
-  { label: 'Name',      value: 'Tsedey Solomon' },
-  { label: 'Email',     value: 'tsdeys19@gmail.com' },
-  { label: 'Telegram',  value: '@tsedi_sol' },
-  { label: 'Location',  value: 'Addis Ababa, ET' },
-  { label: 'Experience',value: '3+ Years' },
-  { label: 'Status',    value: 'Open to Work' },
+  { label: 'Name', value: 'Tsedey Solomon' },
+  { label: 'Email', value: 'tsdeys19@gmail.com' },
+  { label: 'Telegram', value: '@tsedi_sol' },
+  { label: 'Location', value: 'Addis Ababa, ET' },
+  { label: 'Experience', value: '2+ Years' },
+  { label: 'Status', value: 'Open to Work' },
 ];
 
 const About = () => {
@@ -102,7 +102,7 @@ const About = () => {
             {/* Biography text */}
             <div className="space-y-4 text-base text-foreground/60 leading-relaxed">
               <p>
-                Hi! My name is <span className="text-foreground font-bold">Tsedey Solomon</span>. I am a full-stack developer, and I am very passionate and dedicated to my work. With 3+ years of experience as a professional developer, I have acquired the skills and knowledge necessary to make your project a success.
+                Hi! My name is <span className="text-foreground font-bold">Tsedey Solomon</span>. I am a full-stack developer, and I am very passionate and dedicated to my work. With 2+ years of experience as a professional developer, I have acquired the skills and knowledge necessary to make your project a success.
               </p>
               <p>
                 I enjoy every step of the development process, from discussion and collaboration to concept and execution. Currently working full-time at <span className="text-primary font-semibold">DAF Tech Computer</span> and open to freelance opportunities that push boundaries.
