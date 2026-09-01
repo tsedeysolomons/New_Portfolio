@@ -102,6 +102,22 @@ const projects = [
     featured: false,
     accentColor: '#F59E0B',
   },
+  {
+    id: 7,
+    num: '07',
+    title: 'DAF-TECH Water Billing System',
+    subtitle: 'Municipal Water & Sewerage Management Platform',
+    description:
+      'An enterprise-grade billing and management platform for Awash Town Water and Sewerage Supply Office. Features meter rate configuration, consumption tariff management, customer service, finance, and human resource modules.',
+    tech: ['Angular', 'C#', '.NET', 'SQL Server'],
+    image: '/daftech-billing.png',
+    status: 'Live',
+    statusColor: 'bg-violet-500/15 text-violet-400 border-violet-500/20',
+    link: 'http://196.190.251.194:8089/',
+    github: '#',
+    featured: false,
+    accentColor: '#8B5CF6',
+  },
 ];
 
 const containerVariants = {
@@ -110,7 +126,7 @@ const containerVariants = {
 };
 const itemVariants = {
   hidden: { opacity: 0, y: 32 },
-  show:   { opacity: 1, y: 0, transition: { duration: 0.65, ease: 'easeOut' } },
+  show: { opacity: 1, y: 0, transition: { duration: 0.65, ease: 'easeOut' } },
 };
 
 const Projects = () => {
