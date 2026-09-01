@@ -2,20 +2,20 @@ import { Mail, Send, ArrowUpRight } from 'lucide-react';
 import { Github, Linkedin, Twitter } from '@/components/icons';
 
 const socialLinks = [
-  { icon: Github,   href: 'https://github.com/tsedeysolomons/',      label: 'GitHub' },
-  { icon: Linkedin, href: 'https://linkedin.com/in/tsedey-solomon',   label: 'LinkedIn' },
-  { icon: Twitter,  href: 'https://x.com/TsedeySolomon',             label: 'Twitter/X' },
-  { icon: Send,     href: 'https://t.me/tsedi_sol',                   label: 'Telegram' },
-  { icon: Mail,     href: 'mailto:tsdeys19@gmail.com',                label: 'Email' },
+  { icon: Github, href: 'https://github.com/tsedeysolomons/', label: 'GitHub' },
+  { icon: Linkedin, href: 'https://linkedin.com/in/tsedey-solomon', label: 'LinkedIn' },
+  { icon: Twitter, href: 'https://x.com/TsedeySolomon', label: 'Twitter/X' },
+  { icon: Send, href: 'https://t.me/tsedi_sol', label: 'Telegram' },
+  { icon: Mail, href: 'mailto:tsdeys19@gmail.com', label: 'Email' },
 ];
 
 const quickLinks = [
-  { label: 'About',      href: '#about' },
-  { label: 'Skills',     href: '#skills' },
-  { label: 'Projects',   href: '#projects' },
-  { label: 'Journey',    href: '#journey' },
+  { label: 'About', href: '#about' },
+  { label: 'Skills', href: '#skills' },
+  { label: 'Projects', href: '#projects' },
+  { label: 'Journey', href: '#journey' },
   { label: 'Experience', href: '#experience' },
-  { label: 'Contact',    href: '#contact' },
+  { label: 'Contact', href: '#contact' },
 ];
 
 const Footer = () => {
@@ -93,7 +93,7 @@ const Footer = () => {
               })}
             </div>
             <a
-              href="/Tsedey_Solomon_Resume.pdf"
+              href="/Tsedey_Solomon_Junior_Full_Stack_Software_Engineer_20260813.pdf"
               target="_blank"
               rel="noopener noreferrer"
               className="inline-flex items-center gap-2 px-5 py-2.5 rounded-xl bg-primary text-primary-foreground text-sm font-bold hover:shadow-lg hover:shadow-primary/30 hover:scale-[1.02] transition-all"
