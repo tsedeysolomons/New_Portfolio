@@ -43,8 +43,8 @@ const experiences = [
   },
 ];
 
-const certifications = [
-  'Full-Stack Web Development (Dereja Academy)',
+const OnlineCourses = [
+  'Full-Stack Web Development ',
   'React Native & Expo Mobile Development',
   'Python for Data Science & AI',
   'Machine Learning Fundamentals',
@@ -135,15 +135,15 @@ const Experience = () => {
             </div>
           </div>
 
-          {/* Certifications & Competencies */}
+          {/* OnlineCourses & Competencies */}
           <div className="space-y-8">
             <div>
               <h3 className="text-2xl font-black mb-8 flex items-center gap-3">
                 <Award className="text-accent" size={26} />
-                Certifications
+                OnlineCourses
               </h3>
               <div className="space-y-3">
-                {certifications.map((cert) => (
+                {OnlineCourses.map((cert) => (
                   <div
                     key={cert}
                     className="p-4 rounded-xl bg-gradient-to-r from-primary/8 to-accent/8 border border-primary/20 hover:border-primary/40 transition-all flex items-start gap-3"
