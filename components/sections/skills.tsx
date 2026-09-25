@@ -1,197 +1,176 @@
 'use client';
 
-import { useState } from 'react';
-import { motion, AnimatePresence } from 'framer-motion';
+import { motion } from 'framer-motion';
 
-const skillCategories = [
+const DEVICON = 'https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons';
+
+const stack = [
+  { name: 'typescript', slug: 'typescript' },
+  { name: 'javascript', slug: 'javascript' },
+  { name: 'python', slug: 'python' },
+  { name: 'csharp', slug: 'csharp' },
+  { name: 'c++', slug: 'cplusplus' },
+  { name: 'php', slug: 'php' },
+  { name: 'html5', slug: 'html5' },
+  { name: 'css3', slug: 'css3' },
+  { name: 'angular', slug: 'angular' },
+  { name: 'react', slug: 'react' },
+  { name: 'next-js', slug: 'nextjs' },
+  { name: 'react-native', slug: 'reactnative' },
+  { name: 'tailwind', slug: 'tailwindcss' },
+  { name: 'redux', slug: 'redux' },
+  { name: 'bootstrap', slug: 'bootstrap' },
+  { name: 'sass', slug: 'sass' },
+  { name: 'node-js', slug: 'nodejs' },
+  { name: 'express', slug: 'express' },
+  { name: 'dotnet', slug: 'dotnetcore' },
+  { name: 'nestjs', slug: 'nestjs' },
+  { name: 'prisma', slug: 'prisma' },
+  { name: 'postgresql', slug: 'postgresql' },
+  { name: 'mysql', slug: 'mysql' },
+  { name: 'mongodb', slug: 'mongodb' },
+  { name: 'firebase', slug: 'firebase' },
+  { name: 'redis', slug: 'redis' },
+  { name: 'docker', slug: 'docker' },
+  { name: 'git', slug: 'git' },
+  { name: 'github', slug: 'github' },
+  { name: 'linux', slug: 'linux' },
+  { name: 'vscode', slug: 'vscode' },
+  { name: 'nginx', slug: 'nginx' },
+  { name: 'postman', slug: 'postman' },
+  { name: 'figma', slug: 'figma' },
+  { name: 'arduino', slug: 'arduino' },
+];
+
+const categories = [
   {
-    name: 'Frontend',
-    icon: '🎨',
-    skills: ['Angular', 'React', 'Next.js', 'TypeScript', 'React Native', 'Tailwind CSS', 'HTML5', 'CSS3'],
+    name: 'frontend',
+    deps: ['Angular', 'React', 'Next.js', 'TypeScript', 'React Native', 'Tailwind CSS', 'HTML5', 'CSS3'],
   },
   {
-    name: 'Backend',
-    icon: '⚙️',
-    skills: ['Node.js', 'C# / .NET', 'Express.js', 'REST APIs', 'WebSockets', 'Auth & JWT'],
+    name: 'backend',
+    deps: ['Node.js', 'C# / .NET', 'Express.js', 'REST APIs', 'WebSockets', 'Auth & JWT'],
   },
   {
-    name: 'Languages',
-    icon: '💻',
-    skills: ['TypeScript', 'JavaScript', 'C#', 'Python', 'Dart', 'PHP', 'SQL'],
+    name: 'languages',
+    deps: ['TypeScript', 'JavaScript', 'C#', 'Python', 'Dart', 'PHP', 'SQL'],
   },
   {
-    name: 'Databases',
-    icon: '🗄️',
-    skills: ['PostgreSQL', 'MySQL', 'Firebase', 'MongoDB'],
+    name: 'databases',
+    deps: ['PostgreSQL', 'MySQL', 'Firebase', 'MongoDB'],
   },
   {
-    name: 'Tools & DevOps',
-    icon: '🛠️',
-    skills: ['Git & GitHub', 'Docker', 'Vercel', 'VS Code', 'Postman', 'Linux'],
+    name: 'devops',
+    deps: ['Git & GitHub', 'Docker', 'Vercel', 'VS Code', 'Postman', 'Linux'],
   },
   {
-    name: 'Embedded & IoT',
-    icon: '🔌',
-    skills: ['Arduino', 'Microcontrollers', 'Sensors', 'C++ Embedded', 'IoT Protocols'],
+    name: 'embedded',
+    deps: ['Arduino', 'Microcontrollers', 'Sensors', 'C++ Embedded', 'IoT Protocols'],
   },
 ];
 
-const proficiencyAreas = [
-  { area: 'Full-Stack Web Development',   level: 90, color: '#2563EB' },
-  { area: 'Angular & .NET Enterprise',    level: 85, color: '#3B82F6' },
-  { area: 'React / Next.js Development',  level: 88, color: '#2563EB' },
-  { area: 'Database Design & SQL',        level: 85, color: '#3B82F6' },
-  { area: 'Mobile (React Native)',        level: 78, color: '#60A5FA' },
-  { area: 'Embedded Systems / IoT',       level: 72, color: '#1D4ED8' },
-];
-
-// SVG ring component
-const RingProgress = ({ level, color, size = 80 }: { level: number; color: string; size?: number }) => {
-  const radius = (size - 10) / 2;
-  const circumference = 2 * Math.PI * radius;
-  const offset = circumference - (level / 100) * circumference;
-  return (
-    <svg width={size} height={size} className="-rotate-90">
-      <circle cx={size / 2} cy={size / 2} r={radius} fill="none" stroke="currentColor" strokeWidth={5} className="text-border" />
-      <motion.circle
-        cx={size / 2} cy={size / 2} r={radius}
-        fill="none" stroke={color} strokeWidth={5}
-        strokeLinecap="round"
-        strokeDasharray={circumference}
-        initial={{ strokeDashoffset: circumference }}
-        whileInView={{ strokeDashoffset: offset }}
-        viewport={{ once: true }}
-        transition={{ duration: 1.2, ease: 'easeOut', delay: 0.2 }}
+const DepCard = ({ name, slug }: { name: string; slug: string }) => (
+  <div
+    title={name}
+    className="group flex flex-shrink-0 items-center gap-2.5 rounded-md border border-border/70 bg-card/50 px-4 py-2.5 font-mono text-sm transition-all duration-300 hover:border-primary/50 hover:bg-primary/5"
+  >
+    <div className="relative h-5 w-5">
+      {/* eslint-disable-next-line @next/next/no-img-element */}
+      <img
+        src={`${DEVICON}/${slug}/${slug}-original.svg`}
+        alt={name}
+        className="h-5 w-5 object-contain grayscale transition-all duration-300 group-hover:grayscale-0"
       />
-    </svg>
-  );
-};
+    </div>
+    <span className="text-muted-foreground transition-colors group-hover:text-foreground">
+      <span className="text-primary/70">&quot;</span>
+      {name}
+      <span className="text-primary/70">&quot;</span>
+      <span className="text-muted-foreground/50">: </span>
+      <span className="text-primary/80">&quot;^prod&quot;</span>
+    </span>
+  </div>
+);
 
 const Skills = () => {
-  const [activeCategory, setActiveCategory] = useState(0);
-
   return (
-    <section id="skills" className="relative py-24 px-5 sm:px-8 lg:px-10 overflow-hidden">
-      {/* Background */}
-      <div className="absolute inset-0 bg-gradient-to-b from-transparent via-primary/2 to-transparent pointer-events-none" />
+    <section id="skills" className="relative overflow-hidden border-y border-border/50 py-28">
+      <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(ellipse_at_top,var(--primary),transparent_60%)] opacity-[0.04]" />
 
-      <div className="max-w-7xl mx-auto relative">
-
-        {/* Header */}
+      <div className="container relative z-10 mx-auto px-4">
         <motion.div
           initial={{ opacity: 0, y: 24 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          transition={{ duration: 0.6 }}
-          className="mb-16"
+          transition={{ duration: 0.7 }}
+          className="mb-14 text-center"
         >
-          <span className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-primary/10 border border-primary/20 text-primary text-[11px] font-bold uppercase tracking-[0.15em] mb-5">
-            Expertise
-          </span>
-          <div className="flex flex-col md:flex-row md:items-end md:justify-between gap-4">
-            <h2 className="text-[clamp(2rem,5vw,3.5rem)] font-black tracking-tight leading-none">
-              Technical{' '}
-              <span className="clip-blue">Skills</span>
-            </h2>
-            <p className="text-base text-muted-foreground max-w-sm">
-              Deep expertise across the full technology stack — from UI to embedded systems.
-            </p>
-          </div>
+          <p className="mb-4 font-mono text-[11px] uppercase tracking-[0.3em] text-primary/80">
+            <span className="opacity-50">05 ·</span> $ cat package.json
+          </p>
+          <h2 className="font-display text-4xl tracking-tight md:text-6xl">
+            Technology <span className="text-luxe italic pr-1">Stack</span>
+          </h2>
         </motion.div>
+      </div>
 
-        {/* Category Tabs */}
-        <motion.div
-          initial={{ opacity: 0, y: 16 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.5, delay: 0.1 }}
-          className="flex flex-wrap gap-2 mb-8"
-        >
-          {skillCategories.map((cat, idx) => (
-            <button
+      {/* ── Infinite dependency marquee ── */}
+      <div className="relative">
+        <div className="pointer-events-none absolute bottom-0 left-0 top-0 z-10 w-24 bg-gradient-to-r from-background to-transparent" />
+        <div className="pointer-events-none absolute bottom-0 right-0 top-0 z-10 w-24 bg-gradient-to-l from-background to-transparent" />
+
+        <p className="container mx-auto mb-2 px-4 font-mono text-xs text-muted-foreground/60">{'{'}</p>
+
+        <div className="overflow-hidden py-2.5">
+          <div className="flex w-max gap-3 animate-scroll">
+            {stack.map((item) => (
+              <DepCard key={`a-${item.slug}`} name={item.name} slug={item.slug} />
+            ))}
+            {stack.map((item) => (
+              <DepCard key={`b-${item.slug}`} name={item.name} slug={item.slug} />
+            ))}
+          </div>
+        </div>
+
+        <p className="container mx-auto mt-2 px-4 font-mono text-xs text-muted-foreground/60">{'}'}</p>
+      </div>
+
+      {/* ── Grouped dependency windows ── */}
+      <div className="container mx-auto mt-16 px-4">
+        <div className="mx-auto grid max-w-6xl gap-5 md:grid-cols-2 lg:grid-cols-3">
+          {categories.map((cat, idx) => (
+            <motion.div
               key={cat.name}
-              id={`skill-tab-${cat.name.toLowerCase().replace(/\s+/g, '-')}`}
-              onClick={() => setActiveCategory(idx)}
-              className={`flex items-center gap-2 px-5 py-2.5 rounded-xl text-sm font-semibold transition-all duration-200 ${
-                activeCategory === idx
-                  ? 'bg-primary text-primary-foreground shadow-lg shadow-primary/25 scale-[1.02]'
-                  : 'bg-card border border-border text-foreground/55 hover:text-foreground hover:border-primary/40'
-              }`}
+              initial={{ opacity: 0, y: 24 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.6, delay: Math.min(idx, 3) * 0.08 }}
+              className="os-window"
             >
-              <span>{cat.icon}</span>
-              {cat.name}
-            </button>
-          ))}
-        </motion.div>
-
-        {/* Skill Pills Grid */}
-        <AnimatePresence mode="wait">
-          <motion.div
-            key={activeCategory}
-            initial={{ opacity: 0, y: 12 }}
-            animate={{ opacity: 1, y: 0 }}
-            exit={{ opacity: 0, y: -8 }}
-            transition={{ duration: 0.3 }}
-            className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-3 mb-16"
-          >
-            {skillCategories[activeCategory].skills.map((skill, idx) => (
-              <motion.div
-                key={skill}
-                initial={{ opacity: 0, scale: 0.9 }}
-                animate={{ opacity: 1, scale: 1 }}
-                transition={{ delay: idx * 0.04, duration: 0.3 }}
-                className="bento-card p-4 flex items-center justify-between group cursor-default"
-              >
-                <span className="font-semibold text-sm text-foreground/70 group-hover:text-primary transition-colors">
-                  {skill}
+              <div className="os-window-bar">
+                <span className="os-dot" />
+                <span className="os-dot" />
+                <span className="os-dot" />
+                <span className="ml-3 font-mono text-[11px] tracking-widest text-muted-foreground">
+                  dependencies/{cat.name}
                 </span>
-                <div className="w-1.5 h-1.5 rounded-full bg-border group-hover:bg-primary group-hover:shadow-[0_0_6px_rgba(37,99,235,0.8)] transition-all" />
-              </motion.div>
-            ))}
-          </motion.div>
-        </AnimatePresence>
-
-        {/* Proficiency — Ring Grid */}
-        <motion.div
-          initial={{ opacity: 0, y: 24 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.6, delay: 0.1 }}
-        >
-          <div className="flex items-end justify-between mb-8">
-            <h3 className="text-2xl font-black tracking-tight">
-              Proficiency{' '}
-              <span className="clip-blue">Overview</span>
-            </h3>
-          </div>
-
-          <div className="grid grid-cols-2 md:grid-cols-3 gap-4">
-            {proficiencyAreas.map((item, idx) => (
-              <motion.div
-                key={item.area}
-                initial={{ opacity: 0, scale: 0.92 }}
-                whileInView={{ opacity: 1, scale: 1 }}
-                viewport={{ once: true }}
-                transition={{ delay: idx * 0.08, duration: 0.5 }}
-                className="bento-card p-6 flex flex-col items-center gap-4"
-              >
-                {/* Ring */}
-                <div className="relative flex items-center justify-center">
-                  <RingProgress level={item.level} color={item.color} size={90} />
-                  <div className="absolute inset-0 flex items-center justify-center flex-col">
-                    <span className="text-lg font-black" style={{ color: item.color }}>
-                      {item.level}%
-                    </span>
-                  </div>
-                </div>
-                {/* Label */}
-                <p className="text-xs font-bold text-center text-foreground/70 leading-snug">
-                  {item.area}
-                </p>
-              </motion.div>
-            ))}
-          </div>
-        </motion.div>
+                <span className="ml-auto font-mono text-[10px] text-primary/60">{cat.deps.length}</span>
+              </div>
+              <div className="p-5 font-mono text-[12.5px] leading-[1.9]">
+                {cat.deps.map((dep) => (
+                  <p key={dep}>
+                    <span className="text-primary/70">&quot;</span>
+                    <span className="text-foreground/90">{dep}</span>
+                    <span className="text-primary/70">&quot;</span>
+                    <span className="text-muted-foreground/50">: </span>
+                    <span className="text-primary/80">&quot;^prod&quot;</span>
+                    <span className="text-muted-foreground/60">,</span>
+                  </p>
+                ))}
+              </div>
+            </motion.div>
+          ))}
+        </div>
       </div>
     </section>
   );

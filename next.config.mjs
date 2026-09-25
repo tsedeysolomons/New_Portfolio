@@ -15,6 +15,11 @@ const nextConfig = {
   turbopack: {
     root: __dirname,
   },
+  // Allow the preview panel / localhost origins to load dev assets (fonts, HMR).
+  allowedDevOrigins: ['127.0.0.1', 'localhost', '192.168.1.10'],
+  // Optional override: build to a fast local disk instead of the (slow) project folder.
+  // Default behaviour is unchanged unless NEXT_DIST_DIR is set.
+  distDir: process.env.NEXT_DIST_DIR || '.next',
 }
 
 export default nextConfig

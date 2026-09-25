@@ -1,15 +1,25 @@
 'use client';
 
 import { useState, useEffect } from 'react';
-import { Menu, X, Sun, Moon } from 'lucide-react';
-import Link from 'next/link';
+import { Menu, X, Sun, Moon, Download } from 'lucide-react';
+
+const navLinks = [
+  { num: '01', href: '#home', label: '[home]' },
+  { num: '02', href: '#about', label: 'about' },
+  { num: '03', href: '#journey', label: 'journey' },
+  { num: '04', href: '#projects', label: 'projects' },
+  { num: '05', href: '#skills', label: 'skills' },
+  { num: '06', href: '#contact', label: 'contact' },
+];
+
+const sections = ['home', 'about', 'journey', 'projects', 'skills', 'contact'];
 
 const Navigation = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [isDark, setIsDark] = useState(false);
   const [scrolled, setScrolled] = useState(false);
   const [mounted, setMounted] = useState(false);
-  const [activeSection, setActiveSection] = useState('hero');
+  const [activeSection, setActiveSection] = useState('home');
 
   useEffect(() => {
     setMounted(true);
@@ -27,13 +37,10 @@ const Navigation = () => {
     }
 
     const handleScroll = () => {
-      setScrolled(window.scrollY > 60);
-
-      // Highlight active nav section
-      const sections = ['hero', 'about', 'skills', 'projects', 'journey', 'experience', 'contact'];
-      for (const id of sections.reverse()) {
+      setScrolled(window.scrollY > 40);
+      for (const id of [...sections].reverse()) {
         const el = document.getElementById(id);
-        if (el && window.scrollY >= el.offsetTop - 120) {
+        if (el && window.scrollY >= el.offsetTop - 140) {
           setActiveSection(id);
           break;
         }
@@ -41,138 +48,135 @@ const Navigation = () => {
     };
 
     window.addEventListener('scroll', handleScroll);
+    handleScroll();
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
   const toggleDarkMode = () => {
-    const newDarkState = !isDark;
-    if (newDarkState) {
-      document.documentElement.classList.add('dark');
-      localStorage.setItem('theme', 'dark');
-    } else {
-      document.documentElement.classList.remove('dark');
-      localStorage.setItem('theme', 'light');
-    }
-    setIsDark(newDarkState);
+    const next = !isDark;
+    document.documentElement.classList.toggle('dark', next);
+    localStorage.setItem('theme', next ? 'dark' : 'light');
+    setIsDark(next);
   };
 
-  const navLinks = [
-    { href: '#hero',       label: 'Home' },
-    { href: '#about',      label: 'About' },
-    { href: '#skills',     label: 'Skills' },
-    { href: '#projects',   label: 'Portfolio' },
-    { href: '#journey',    label: 'Journey' },
-    { href: '#experience', label: 'Experience' },
-    { href: '#contact',    label: 'Contact' },
-  ];
-
-  const navClasses = `fixed top-0 w-full z-50 transition-all duration-500 ${
-    scrolled
-      ? 'bg-background/90 backdrop-blur-md border-b border-border'
-      : 'bg-transparent'
-  }`;
-
   return (
-    <nav className={navClasses} role="navigation" aria-label="Main navigation">
-      <div className="max-w-7xl mx-auto px-6 sm:px-8 lg:px-10">
-        <div className="flex justify-between items-center h-[72px]">
+    <header
+      className={`fixed top-0 z-50 w-full transition-all duration-300 ${
+        scrolled ? 'bg-background/85 backdrop-blur-md' : 'bg-transparent'
+      }`}
+    >
+      <div className="container mx-auto px-4">
+        <div className="flex h-14 items-center justify-between">
+          {/* Shell prompt logo */}
+          <a href="#home" className="flex items-center gap-2.5 font-mono text-sm" aria-label="Tsedey Solomon — home">
+            <span className="flex gap-1.5">
+              <span className="os-dot" />
+              <span className="os-dot" />
+              <span className="os-dot" />
+            </span>
+            <span className="ml-1 text-foreground/90">
+              tsedey@dev<span className="text-primary">:~$</span>
+            </span>
+            <span className="inline-block h-3.5 w-2 bg-primary caret-blink" />
+          </a>
 
-          {/* Logo — Bold Uppercase Text style */}
-          <Link
-            href="/"
-            className="font-black text-xl tracking-[0.15em] uppercase text-foreground hover:text-primary transition-colors"
-            aria-label="Tsedey Solomon — Home"
-          >
-            Tsedey
-          </Link>
-
-          {/* Desktop Nav */}
-          <div className="hidden md:flex items-center gap-1">
+          {/* Desktop nav */}
+          <nav className="hidden items-center gap-1 md:flex">
             {navLinks.map((link) => {
-              const sectionId = link.href.replace('#', '');
-              const isActive = activeSection === sectionId;
+              const isActive = activeSection === link.href.replace('#', '');
               return (
                 <a
                   key={link.href}
                   href={link.href}
-                  className={`relative px-4 py-2 text-[13px] font-bold uppercase tracking-widest transition-all duration-200 ${
-                    isActive
-                      ? 'text-primary'
-                      : 'text-foreground/60 hover:text-foreground'
+                  className={`group rounded px-3 py-1.5 font-mono text-xs transition-colors duration-200 ${
+                    isActive ? 'text-primary' : 'text-muted-foreground hover:text-foreground'
                   }`}
                 >
+                  <span className={`mr-1 text-[9px] ${isActive ? 'text-primary/60' : 'text-muted-foreground/40'}`}>
+                    {link.num}
+                  </span>
                   {link.label}
-                  {isActive && (
-                    <span className="absolute bottom-0 left-4 right-4 h-0.5 bg-primary rounded-full animate-scale-in" />
-                  )}
                 </a>
               );
             })}
-          </div>
 
-          {/* Right Actions */}
-          <div className="flex items-center gap-4">
-            {/* Dark Mode Toggle */}
             {mounted && (
               <button
                 onClick={toggleDarkMode}
                 id="dark-mode-toggle"
-                className="w-9 h-9 rounded-xl flex items-center justify-center text-foreground/50 hover:text-foreground hover:bg-muted transition-all duration-200"
-                aria-label={isDark ? 'Switch to light mode' : 'Switch to dark mode'}
+                title="Toggle dark/light mode"
+                aria-label="Toggle theme"
+                className="ml-2 flex h-8 w-8 items-center justify-center rounded-md border border-border text-muted-foreground transition-colors hover:border-primary/50 hover:text-primary"
               >
-                {isDark ? <Sun size={17} /> : <Moon size={17} />}
+                {isDark ? <Sun className="h-3.5 w-3.5" /> : <Moon className="h-3.5 w-3.5" />}
               </button>
             )}
 
-            {/* Outline CTA Button */}
             <a
-              href="#contact"
-              className="hidden sm:flex items-center gap-1.5 px-5 py-2 rounded-full border-2 border-primary text-primary hover:bg-primary hover:text-primary-foreground text-[12px] font-bold uppercase tracking-wider transition-all duration-200"
+              href="/Tsedey_Solomon_Junior_Full_Stack_Software_Engineer_20260813.pdf"
+              download
+              className="ml-1.5 inline-flex items-center gap-1.5 rounded-md border border-primary/40 bg-primary/10 px-3.5 py-1.5 font-mono text-xs text-primary transition-all duration-300 hover:bg-primary hover:text-primary-foreground"
             >
-              Hire Me
+              <Download className="h-3 w-3" />
+              cv.pdf
             </a>
+          </nav>
 
-            {/* Mobile Menu Toggle */}
+          {/* Mobile controls */}
+          <div className="flex items-center gap-1 md:hidden">
+            {mounted && (
+              <button
+                onClick={toggleDarkMode}
+                aria-label="Toggle theme"
+                className="flex h-9 w-9 items-center justify-center rounded-md text-muted-foreground"
+              >
+                {isDark ? <Sun className="h-4 w-4" /> : <Moon className="h-4 w-4" />}
+              </button>
+            )}
             <button
               onClick={() => setIsOpen(!isOpen)}
               id="mobile-menu-toggle"
-              className="md:hidden w-9 h-9 rounded-xl flex items-center justify-center hover:bg-muted transition-colors"
-              aria-label="Toggle mobile menu"
+              className="p-2 text-foreground"
+              aria-label="Menu"
               aria-expanded={isOpen}
             >
-              {isOpen ? <X size={20} /> : <Menu size={20} />}
+              {isOpen ? <X className="h-5 w-5" /> : <Menu className="h-5 w-5" />}
             </button>
           </div>
         </div>
-
-        {/* Mobile Navigation */}
-        {isOpen && (
-          <div className="md:hidden pb-5 pt-3 border-t border-border mt-1 animate-fade-slide-up">
-            <div className="space-y-0.5">
-              {navLinks.map((link) => (
-                <a
-                  key={link.href}
-                  href={link.href}
-                  className="block px-4 py-3 text-[13px] font-bold uppercase tracking-widest text-foreground/60 hover:text-primary hover:bg-primary/5 rounded-xl transition-all"
-                  onClick={() => setIsOpen(false)}
-                >
-                  {link.label}
-                </a>
-              ))}
-            </div>
-            <div className="px-4 mt-4 pt-4 border-t border-border">
-              <a
-                href="#contact"
-                className="flex items-center justify-center gap-2 py-3 rounded-full border-2 border-primary text-primary hover:bg-primary hover:text-primary-foreground text-sm font-bold uppercase tracking-wider"
-                onClick={() => setIsOpen(false)}
-              >
-                Hire Me
-              </a>
-            </div>
-          </div>
-        )}
       </div>
-    </nav>
+
+      {/* Gold hairline under the bar */}
+      <div className="hairline-gold" />
+
+      {/* Mobile menu */}
+      {isOpen && (
+        <div className="border-b border-border bg-background/95 backdrop-blur-md md:hidden">
+          <div className="container mx-auto space-y-1 px-4 py-4">
+            {navLinks.map((link) => (
+              <a
+                key={link.href}
+                href={link.href}
+                onClick={() => setIsOpen(false)}
+                className="flex items-center gap-2 rounded px-3 py-2 font-mono text-sm text-muted-foreground transition-colors hover:text-primary"
+              >
+                <span className="text-[9px] text-muted-foreground/40">{link.num}</span>
+                {link.label}
+              </a>
+            ))}
+            <a
+              href="/Tsedey_Solomon_Junior_Full_Stack_Software_Engineer_20260813.pdf"
+              download
+              onClick={() => setIsOpen(false)}
+              className="mt-2 inline-flex items-center gap-1.5 rounded-md border border-primary/40 bg-primary/10 px-3.5 py-2 font-mono text-xs text-primary"
+            >
+              <Download className="h-3 w-3" />
+              cv.pdf
+            </a>
+          </div>
+        </div>
+      )}
+    </header>
   );
 };
 

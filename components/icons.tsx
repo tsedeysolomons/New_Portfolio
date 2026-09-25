@@ -43,6 +43,25 @@ export const Linkedin = ({ size = 24, className, ...props }: IconProps) => (
   </svg>
 );
 
+export const Telegram = ({ size = 24, className, ...props }: IconProps) => (
+  <svg
+    xmlns="http://www.w3.org/2000/svg"
+    width={size}
+    height={size}
+    viewBox="0 0 24 24"
+    fill="none"
+    stroke="currentColor"
+    strokeWidth="2"
+    strokeLinecap="round"
+    strokeLinejoin="round"
+    className={className}
+    {...props}
+  >
+    <path d="M21.5 4.5 2.9 11.4c-1 .4-1 1.1-.2 1.4l4.7 1.5 1.8 5.5c.2.6.4.8 1 .4l2.7-2 4.8 3.5c.9.5 1.5.2 1.7-.8l3.2-15c.3-1.2-.5-1.8-1.1-1.4z" />
+    <path d="M8.3 14.3 19 6.2c.4-.3.8-.1.5.2l-8.4 7.7" />
+  </svg>
+);
+
 export const Twitter = ({ size = 24, className, ...props }: IconProps) => (
   <svg
     xmlns="http://www.w3.org/2000/svg"

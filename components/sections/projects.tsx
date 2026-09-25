@@ -1,366 +1,252 @@
 'use client';
 
-import { ExternalLink, ArrowUpRight } from 'lucide-react';
+import { useRef } from 'react';
+import { ArrowUpRight, ChevronLeft, ChevronRight } from 'lucide-react';
 import { Github } from '@/components/icons';
 import { motion } from 'framer-motion';
 import Image from 'next/image';
 
 const projects = [
   {
-    id: 1,
-    num: '01',
+    slug: 'trainer-pooling',
     title: 'EMwA Trainer Pooling System',
-    subtitle: 'Enterprise Trainer Management Platform',
+    org: 'Ethiopian Midwives Association',
+    role: 'Full-Stack Developer',
     description:
-      'Streamlining professional trainer mobilization for the Ethiopian Midwives Association. A centralized, data-driven platform optimizing nationwide trainer allocation across Ethiopia\'s healthcare education network.',
+      "Streamlining professional trainer mobilization for the Ethiopian Midwives Association — a centralized, data-driven platform optimizing nationwide trainer allocation across Ethiopia's healthcare education network.",
     tech: ['Angular', 'Tailwind CSS', 'C#', '.NET'],
     image: '/trainerpooling.png',
-    status: 'Live',
-    statusColor: 'bg-primary/15 text-primary border-primary/20',
     link: 'http://49.12.194.224:8081/',
     github: 'https://github.com/tsedeysolomons/Trainer-pooling.git',
-    featured: true,
-    accentColor: '#2563EB',
   },
   {
-    id: 2,
-    num: '02',
-    title: 'Ethiopian Midr Babur E-Ticket',
-    subtitle: 'Digital Transport Ticketing System',
-    description:
-      'EMBE-T is a digital ticketing system designed to modernize public transportation in Ethiopia with online booking, payment integration, and real-time tracking.',
-    tech: ['React', 'Node.js', 'Prisma', 'MySQL'],
-    image: '/eticket.png',
-    status: 'Completed',
-    statusColor: 'bg-accent/15 text-accent border-accent/20',
-    link: '#',
-    github: 'https://github.com/tsedeysolomons/EMBE-T.git',
-    featured: false,
-    accentColor: '#A78BFA',
-  },
-  {
-    id: 3,
-    num: '03',
-    title: 'E-Combinator Platform',
-    subtitle: 'Startup Incubation & Collaboration Hub',
-    description:
-      'Developed for i-cog labs, E-Combinator is a digital startup accelerator platform that connects Ethiopian innovators and investors.',
-    tech: ['Next.js', 'PostgreSQL', 'Node.js', 'Tailwind CSS'],
-    image: '/ecombinator.png',
-    status: 'Completed',
-    statusColor: 'bg-cyan-500/15 text-cyan-400 border-cyan-500/20',
-    link: '#',
-    github: 'https://github.com/tsedeysolomons/E-COMBINATOR.git',
-    featured: false,
-    accentColor: '#06B6D4',
-  },
-  {
-    id: 4,
-    num: '04',
-    title: 'SkillSwap Platform',
-    subtitle: 'Skill-Sharing Mobile App',
-    description:
-      'A skill-sharing platform built with React Native, allowing users to exchange skills and services through profiles, chat, and scheduling features.',
-    tech: ['React Native', 'Firebase', 'Chat', 'Scheduling'],
-    image: '/skillswap.png',
-    status: 'Completed',
-    statusColor: 'bg-emerald-500/15 text-emerald-400 border-emerald-500/20',
-    link: '#',
-    github: 'https://github.com/tsedeysolomons/SkillSwap.git',
-    featured: false,
-    accentColor: '#10B981',
-  },
-  {
-    id: 5,
-    num: '05',
-    title: 'BGS Restaurant Menu',
-    subtitle: 'Digital Restaurant Menu System',
-    description:
-      'Fully responsive digital menu with categories, real-time shopping cart, advanced search and filtering system for mobile and desktop.',
-    tech: ['Next.js 15', 'Supabase', 'Prisma', 'React'],
-    image: '/bgs-restaurant.png',
-    status: 'Completed',
-    statusColor: 'bg-orange-500/15 text-orange-400 border-orange-500/20',
-    link: '#',
-    github: 'https://github.com/tsedeysolomons/BGS-Restaurant_Menu.git',
-    featured: false,
-    accentColor: '#F97316',
-  },
-  {
-    id: 6,
-    num: '06',
-    title: 'Have Fashion Inventory',
-    subtitle: 'Inventory Management System',
-    description:
-      'A modern web-based inventory management system for a men\'s clothing store called Have Fashion with dashboard analytics and stock tracking.',
-    tech: ['React', 'Tailwind CSS', 'Dashboard', 'Inventory'],
-    image: '/havefashion.png',
-    status: 'Completed',
-    statusColor: 'bg-amber-500/15 text-amber-400 border-amber-500/20',
-    link: '#',
-    github: 'https://github.com/tsedeysolomons/have-fashi-inventory-system.git',
-    featured: false,
-    accentColor: '#F59E0B',
-  },
-  {
-    id: 7,
-    num: '07',
+    slug: 'water-billing',
     title: 'DAF-TECH Water Billing System',
-    subtitle: 'Municipal Water & Sewerage Management Platform',
+    org: 'Awash Town Water & Sewerage Office',
+    role: 'Software Developer',
     description:
-      'An enterprise-grade billing and management platform for Awash Town Water and Sewerage Supply Office. Features meter rate configuration, consumption tariff management, customer service, finance, and human resource modules.',
+      'An enterprise-grade billing and management platform featuring meter rate configuration, consumption tariff management, customer service, finance and human resource modules.',
     tech: ['Angular', 'C#', '.NET', 'SQL Server'],
     image: '/daftech-billing.png',
-    status: 'Live',
-    statusColor: 'bg-violet-500/15 text-violet-400 border-violet-500/20',
     link: 'http://196.190.251.194:8089/',
     github: '#',
-    featured: false,
-    accentColor: '#8B5CF6',
+  },
+  {
+    slug: 'e-ticket',
+    title: 'Ethiopian Midr Babur E-Ticket',
+    org: 'EMBE-T',
+    role: 'Full-Stack Developer',
+    description:
+      'A digital ticketing system designed to modernize public transportation in Ethiopia with online booking, payment integration and real-time tracking.',
+    tech: ['React', 'Node.js', 'Prisma', 'MySQL'],
+    image: '/eticket.png',
+    link: '#',
+    github: 'https://github.com/tsedeysolomons/EMBE-T.git',
+  },
+  {
+    slug: 'e-combinator',
+    title: 'E-Combinator Platform',
+    org: 'i-cog Labs',
+    role: 'Full-Stack Developer',
+    description:
+      'A digital startup accelerator platform built for i-cog labs that connects Ethiopian innovators and investors in one collaboration hub.',
+    tech: ['Next.js', 'PostgreSQL', 'Node.js', 'Tailwind CSS'],
+    image: '/ecombinator.png',
+    link: '#',
+    github: 'https://github.com/tsedeysolomons/E-COMBINATOR.git',
+  },
+  {
+    slug: 'skillswap',
+    title: 'SkillSwap Platform',
+    org: 'Personal Project',
+    role: 'Mobile Developer',
+    description:
+      'A skill-sharing mobile app built with React Native, letting users exchange skills and services through profiles, chat and scheduling.',
+    tech: ['React Native', 'Firebase', 'Chat', 'Scheduling'],
+    image: '/skillswap.png',
+    link: '#',
+    github: 'https://github.com/tsedeysolomons/SkillSwap.git',
+  },
+  {
+    slug: 'bgs-menu',
+    title: 'BGS Restaurant Menu',
+    org: 'BGS Restaurant',
+    role: 'Frontend Developer',
+    description:
+      'A fully responsive digital menu with categories, real-time cart, advanced search and filtering for mobile and desktop.',
+    tech: ['Next.js', 'Supabase', 'Prisma', 'React'],
+    image: '/bgs-restaurant.png',
+    link: '#',
+    github: 'https://github.com/tsedeysolomons/BGS-Restaurant_Menu.git',
+  },
+  {
+    slug: 'have-fashion',
+    title: 'Have Fashion Inventory',
+    org: 'Have Fashion',
+    role: 'Frontend Developer',
+    description:
+      "A modern web-based inventory management system for a men's clothing store, with dashboard analytics and stock tracking.",
+    tech: ['React', 'Tailwind CSS', 'Dashboard', 'Inventory'],
+    image: '/havefashion.png',
+    link: '#',
+    github: 'https://github.com/tsedeysolomons/have-fashi-inventory-system.git',
   },
 ];
 
-const containerVariants = {
-  hidden: {},
-  show: { transition: { staggerChildren: 0.12 } },
-};
-const itemVariants = {
-  hidden: { opacity: 0, y: 32 },
-  show: { opacity: 1, y: 0, transition: { duration: 0.65, ease: 'easeOut' } },
-};
-
 const Projects = () => {
-  const featured = projects.find((p) => p.featured)!;
-  const rest = projects.filter((p) => !p.featured);
+  const trackRef = useRef<HTMLDivElement>(null);
+
+  const scrollByCard = (direction: 1 | -1) => {
+    const track = trackRef.current;
+    if (!track) return;
+    const card = track.querySelector('[data-card]') as HTMLElement | null;
+    const amount = card ? card.offsetWidth + 24 : track.clientWidth * 0.6;
+    track.scrollBy({ left: amount * direction, behavior: 'smooth' });
+  };
 
   return (
-    <section id="projects" className="relative py-24 px-5 sm:px-8 lg:px-10 overflow-hidden">
-      {/* Background */}
-      <div className="absolute top-0 left-0 w-[500px] h-[500px] bg-accent/4 rounded-full blur-[120px] pointer-events-none" />
-
-      <div className="max-w-7xl mx-auto relative">
-
-        {/* Header */}
+    <section id="projects" className="relative overflow-hidden py-28">
+      <div className="container relative z-10 mx-auto px-4">
+        {/* Section header */}
         <motion.div
           initial={{ opacity: 0, y: 24 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          transition={{ duration: 0.6 }}
-          className="mb-16"
-        >
-          <span className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-primary/10 border border-primary/20 text-primary text-[11px] font-bold uppercase tracking-[0.15em] mb-5">
-            ✦ Portfolio
-          </span>
-          <div className="flex flex-col md:flex-row md:items-end md:justify-between gap-4">
-            <h2 className="text-[clamp(2rem,5vw,3.5rem)] font-black tracking-tight leading-none">
-              Featured{' '}
-              <span className="clip-blue">Projects</span>
-            </h2>
-            <a
-              href="https://github.com/tsedeysolomons/"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="inline-flex items-center gap-2 text-sm font-semibold text-muted-foreground hover:text-primary transition-colors"
-            >
-              <Github size={16} />
-              All on GitHub
-              <ArrowUpRight size={14} />
-            </a>
-          </div>
-        </motion.div>
-
-        {/* ── Featured Project — Full-Width Bento ── */}
-        <motion.div
-          initial={{ opacity: 0, y: 36 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
           transition={{ duration: 0.7 }}
-          className="bento-card mb-5 overflow-hidden group"
+          className="mb-14 text-center"
         >
-          <div className="grid lg:grid-cols-2">
-            {/* Visual side — Real screenshot */}
-            <div
-              className="relative min-h-[260px] lg:min-h-[360px] overflow-hidden"
-              style={{ background: `radial-gradient(ellipse at center, ${featured.accentColor}18 0%, transparent 70%)` }}
-            >
-              {/* Large number watermark */}
-              <span
-                className="absolute top-4 left-6 project-num select-none z-10"
-                style={{ color: `${featured.accentColor}25` }}
-              >
-                {featured.num}
-              </span>
-              {/* Project screenshot */}
-              <Image
-                src={featured.image}
-                alt={featured.title}
-                fill
-                className="object-cover group-hover:scale-105 transition-transform duration-700"
-                sizes="(max-width: 1024px) 100vw, 50vw"
-              />
-              {/* Gradient overlay */}
-              <div className="absolute inset-0 bg-gradient-to-r from-transparent via-transparent to-card/80 lg:block hidden z-[1]" />
-              <div className="absolute inset-0 bg-gradient-to-t from-card/60 to-transparent lg:hidden z-[1]" />
+          <p className="mb-4 font-mono text-[11px] uppercase tracking-[0.3em] text-primary/80">
+            <span className="opacity-50">04 ·</span> $ ls ~/projects
+          </p>
+          <h2 className="font-display text-4xl tracking-tight md:text-6xl">
+            Featured <span className="text-luxe italic pr-1">Projects</span>
+          </h2>
+        </motion.div>
+
+        <div className="mx-auto max-w-5xl">
+          <div className="relative">
+            {/* Controls */}
+            <div className="mb-4 flex items-center justify-between">
+              <p className="font-mono text-[10px] uppercase tracking-[0.2em] text-muted-foreground">
+                ~/projects — {projects.length} repos
+              </p>
+              <div className="flex gap-2">
+                <button
+                  onClick={() => scrollByCard(-1)}
+                  aria-label="Previous project"
+                  className="flex h-8 w-8 items-center justify-center rounded-md border border-border text-muted-foreground transition-colors hover:border-primary/50 hover:text-primary"
+                >
+                  <ChevronLeft className="h-4 w-4" />
+                </button>
+                <button
+                  onClick={() => scrollByCard(1)}
+                  aria-label="Next project"
+                  className="flex h-8 w-8 items-center justify-center rounded-md border border-border text-muted-foreground transition-colors hover:border-primary/50 hover:text-primary"
+                >
+                  <ChevronRight className="h-4 w-4" />
+                </button>
+              </div>
             </div>
 
-            {/* Content side */}
-            <div className="p-8 md:p-10 flex flex-col justify-between">
-              <div>
-                {/* Status + number */}
-                <div className="flex items-center gap-3 mb-6">
-                  <span className={`px-3 py-1 rounded-full text-[10px] font-black uppercase tracking-widest border ${featured.statusColor}`}>
-                    {featured.status}
-                  </span>
-                  <span className="text-[11px] font-bold text-muted-foreground uppercase tracking-widest">
-                    Featured Project
-                  </span>
-                </div>
-
-                <h3 className="text-2xl md:text-3xl font-black mb-2 tracking-tight text-foreground">
-                  {featured.title}
-                </h3>
-                <p className="text-primary font-semibold text-sm mb-5">{featured.subtitle}</p>
-                <p className="text-foreground/60 leading-relaxed text-sm mb-6">
-                  {featured.description}
-                </p>
-
-                {/* Tech stack */}
-                <div className="flex flex-wrap gap-2 mb-8">
-                  {featured.tech.map((t) => (
-                    <span key={t} className="text-[10px] font-bold px-3 py-1 rounded-full bg-primary/10 text-primary border border-primary/20">
-                      {t}
-                    </span>
-                  ))}
-                </div>
-              </div>
-
-              {/* CTA Buttons */}
-              <div className="flex gap-3">
-                {featured.link !== '#' && (
-                  <a
-                    href={featured.link}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="flex items-center gap-2 px-6 py-2.5 rounded-xl bg-primary text-primary-foreground text-sm font-bold hover:shadow-xl hover:shadow-primary/30 hover:scale-[1.02] transition-all"
+            <div
+              ref={trackRef}
+              className="hide-scrollbar flex snap-x snap-mandatory gap-6 overflow-x-auto scroll-smooth pb-2 outline-none"
+            >
+              {projects.map((project, idx) => {
+                const href = project.link !== '#' ? project.link : project.github;
+                return (
+                  <motion.div
+                    key={project.slug}
+                    data-card
+                    initial={{ opacity: 0, y: 30 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    viewport={{ once: true }}
+                    transition={{ duration: 0.6, delay: Math.min(idx, 3) * 0.08 }}
+                    className="basis-full shrink-0 snap-start snap-always md:basis-[calc(50%-0.75rem)]"
                   >
-                    <ExternalLink size={14} />
-                    Live Demo
-                  </a>
-                )}
-                {featured.github !== '#' && (
-                  <a
-                    href={featured.github}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="flex items-center gap-2 px-6 py-2.5 rounded-xl border border-border hover:border-primary/50 hover:bg-muted text-sm font-bold transition-all"
-                  >
-                    <Github size={14} />
-                    Source Code
-                  </a>
-                )}
-              </div>
+                    <div className="os-window group h-full transition-shadow duration-500 hover:shadow-[0_0_50px_-15px_var(--primary)]">
+                      <div className="os-window-bar">
+                        <span className="os-dot" />
+                        <span className="os-dot" />
+                        <span className="os-dot" />
+                        <span className="ml-3 truncate font-mono text-[11px] tracking-wider text-muted-foreground">
+                          ~/projects/{project.slug}
+                        </span>
+                        <span className="ml-auto hidden font-mono text-[10px] text-primary/60 sm:block">
+                          public
+                        </span>
+                      </div>
+
+                      <a
+                        href={href}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="relative block aspect-[16/9] overflow-hidden scanlines"
+                      >
+                        <Image
+                          src={project.image}
+                          alt={project.title}
+                          fill
+                          className="object-cover object-top saturate-[0.8] transition-all duration-700 group-hover:scale-[1.04] group-hover:saturate-100"
+                        />
+                        <div className="absolute inset-0 bg-gradient-to-t from-background/70 via-transparent to-transparent" />
+                      </a>
+
+                      <div className="p-5">
+                        <div className="flex items-start justify-between gap-3">
+                          <div className="min-w-0">
+                            <h3 className="font-display text-2xl leading-tight tracking-tight text-foreground transition-colors duration-300 group-hover:text-primary">
+                              {project.title}
+                            </h3>
+                            <p className="mt-0.5 font-mono text-[11px] uppercase tracking-[0.18em] text-muted-foreground">
+                              {project.org} · {project.role}
+                            </p>
+                          </div>
+                          <a
+                            href={href}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            aria-label={`Open ${project.title}`}
+                            className="flex h-9 w-9 flex-shrink-0 items-center justify-center rounded-md border border-border text-muted-foreground transition-all duration-300 hover:border-primary hover:bg-primary hover:text-primary-foreground"
+                          >
+                            <ArrowUpRight className="h-4 w-4" />
+                          </a>
+                        </div>
+
+                        <p className="mt-3 text-sm leading-relaxed text-muted-foreground">{project.description}</p>
+
+                        <div className="mt-4 flex flex-wrap items-center gap-2">
+                          {project.tech.map((t) => (
+                            <span
+                              key={t}
+                              className="rounded border border-primary/20 bg-primary/5 px-2 py-0.5 font-mono text-[10px] uppercase tracking-wider text-primary/90"
+                            >
+                              {t}
+                            </span>
+                          ))}
+                        </div>
+
+                        {project.github !== '#' && (
+                          <a
+                            href={project.github}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="mt-4 inline-flex items-center gap-1.5 font-mono text-[11px] text-muted-foreground transition-colors hover:text-primary"
+                          >
+                            <Github className="h-3.5 w-3.5" /> source
+                          </a>
+                        )}
+                      </div>
+                    </div>
+                  </motion.div>
+                );
+              })}
             </div>
           </div>
-        </motion.div>
-
-        {/* ── Other Projects — 3-col Bento ── */}
-        <motion.div
-          variants={containerVariants}
-          initial="hidden"
-          whileInView="show"
-          viewport={{ once: true }}
-          className="grid md:grid-cols-3 gap-5"
-        >
-          {rest.map((project) => (
-            <motion.div
-              key={project.id}
-              variants={itemVariants}
-              className="bento-card group overflow-hidden flex flex-col"
-            >
-              {/* Visual header — Real screenshot */}
-              <div
-                className="relative h-48 overflow-hidden"
-              >
-                <Image
-                  src={project.image}
-                  alt={project.title}
-                  fill
-                  className="object-cover group-hover:scale-110 transition-transform duration-500"
-                  sizes="(max-width: 768px) 100vw, 33vw"
-                />
-                {/* Number watermark */}
-                <span
-                  className="absolute top-3 left-4 text-5xl font-black select-none z-10"
-                  style={{ color: `${project.accentColor}30` }}
-                >
-                  {project.num}
-                </span>
-                {/* Bottom gradient for readability */}
-                <div className="absolute inset-0 bg-gradient-to-t from-card/70 via-transparent to-transparent" />
-              </div>
-
-              {/* Content */}
-              <div className="p-6 flex flex-col flex-1">
-                <div className="flex items-center gap-2 mb-4">
-                  <span className={`text-[9px] font-black px-2.5 py-1 rounded-full border uppercase tracking-widest ${project.statusColor}`}>
-                    {project.status}
-                  </span>
-                </div>
-
-                <h3 className="font-black text-base mb-1 group-hover:text-primary transition-colors leading-tight">
-                  {project.title}
-                </h3>
-                <p className="text-xs font-semibold mb-3" style={{ color: project.accentColor }}>
-                  {project.subtitle}
-                </p>
-                <p className="text-xs text-foreground/55 leading-relaxed mb-5 flex-1">
-                  {project.description}
-                </p>
-
-                {/* Tech */}
-                <div className="flex flex-wrap gap-1.5 mb-5">
-                  {project.tech.map((t) => (
-                    <span key={t} className="text-[9px] font-bold px-2.5 py-1 rounded-full bg-muted border border-border text-muted-foreground">
-                      {t}
-                    </span>
-                  ))}
-                </div>
-
-                {/* Buttons */}
-                <div className="flex gap-2 mt-auto">
-                  {project.link !== '#' ? (
-                    <a
-                      href={project.link}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="flex items-center gap-1.5 px-4 py-2 rounded-xl bg-primary text-primary-foreground text-xs font-bold hover:shadow-lg hover:shadow-primary/25 transition-all"
-                    >
-                      <ExternalLink size={11} /> Live
-                    </a>
-                  ) : (
-                    <span className="flex items-center gap-1.5 px-4 py-2 rounded-xl bg-muted text-muted-foreground text-xs font-bold cursor-default">
-                      Coming Soon
-                    </span>
-                  )}
-                  {project.github !== '#' && (
-                    <a
-                      href={project.github}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="flex items-center gap-1.5 px-4 py-2 rounded-xl border border-border hover:border-primary/40 text-xs font-bold transition-all"
-                    >
-                      <Github size={11} /> Code
-                    </a>
-                  )}
-                </div>
-              </div>
-            </motion.div>
-          ))}
-        </motion.div>
+        </div>
       </div>
     </section>
   );
 };
 
 export default Projects;
-

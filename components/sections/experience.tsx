@@ -1,50 +1,48 @@
-import { Briefcase, Award } from 'lucide-react';
+'use client';
 
-const experiences = [
+import { motion } from 'framer-motion';
+
+const commits = [
   {
-    title: 'Software Developer',
-    company: 'DAF Tech Computer',
-    period: 'Dec 2025 — Present',
-    type: 'Full-time',
-    status: 'Active',
+    hash: 'HEAD',
+    branch: 'main',
+    badge: 'Now',
+    title: 'Software Developer — DAF Tech Computer',
     description:
-      'Building enterprise software solutions and internal tools. Working with modern web technologies to deliver high-performance, scalable applications for business clients.',
-    tech: ['Angular', 'React', 'TypeScript', '.NET'],
+      'Building enterprise software solutions and internal tools with Angular, .NET and React, delivering high-performance, scalable applications for business clients.',
+    tech: ['Angular', '.NET / C#', 'React', 'TypeScript'],
   },
   {
-    title: 'Web Developer',
-    company: 'Freelance & Personal Projects',
-    period: 'Jan 2024 — Present',
-    type: 'Full-time',
-    status: 'Active',
+    hash: '7c1e4b9',
+    branch: 'feat/platforms',
+    badge: '2024 —',
+    title: 'Web Developer — Freelance & Personal Projects',
     description:
-      'Designing and developing full-stack web applications for clients across different sectors. Delivering end-to-end solutions from UI/UX design to backend API development and deployment.',
+      'Designing and shipping full-stack web applications for clients across different sectors — from UI/UX through backend APIs to deployment.',
     tech: ['React', 'Next.js', 'Node.js', 'PostgreSQL'],
   },
   {
+    hash: '4b8d2a1',
+    branch: 'feat/embedded',
+    badge: '2023 — 24',
     title: 'Microprocessor Systems Developer',
-    company: 'Academic & Personal Projects',
-    period: 'Jan 2023 — Dec 2024',
-    type: 'Academic',
-    status: 'Completed',
     description:
-      'Developed embedded systems and IoT projects using microcontrollers and Arduino. Built sensor-based automation systems and gained hands-on experience in low-level hardware programming.',
+      'Developed embedded systems and IoT projects using microcontrollers and Arduino, building sensor-based automation and low-level hardware programming.',
     tech: ['Arduino', 'C++', 'Sensors', 'IoT'],
   },
   {
-    title: 'ICT Support Intern',
-    company: 'PEDS (Point of Sale Systems)',
-    period: 'Jan 2024 — Dec 2024',
-    type: 'Internship',
-    status: 'Completed',
+    hash: '9e2f7c5',
+    branch: 'fix/support',
+    badge: '2024',
+    title: 'ICT Support Intern — PEDS',
     description:
-      'Provided technical support and troubleshooting for Point of Sale systems. Gained practical experience in enterprise IT infrastructure, system maintenance, and user support.',
+      'Provided technical support and troubleshooting for Point of Sale systems, gaining hands-on experience in enterprise IT infrastructure and user support.',
     tech: ['IT Support', 'Hardware', 'Networking'],
   },
 ];
 
-const OnlineCourses = [
-  'Full-Stack Web Development ',
+const training = [
+  'Full-Stack Web Development',
   'React Native & Expo Mobile Development',
   'Python for Data Science & AI',
   'Machine Learning Fundamentals',
@@ -61,115 +59,153 @@ const competencies = [
   'Agile Methodology',
 ];
 
-const statusColors: Record<string, string> = {
-  Active: 'bg-blue-500/15 text-blue-500',
-  Completed: 'bg-primary/10 text-primary',
-};
-
-const typeColors: Record<string, string> = {
-  'Full-time': 'bg-blue-500/10 text-blue-400',
-  Academic: 'bg-amber-500/10 text-amber-400',
-  Internship: 'bg-purple-500/10 text-purple-400',
-};
-
 const Experience = () => {
   return (
-    <section id="experience" className="relative py-20 px-4 sm:px-6 lg:px-8 overflow-hidden">
-      <div className="absolute bottom-0 right-0 w-80 h-80 bg-primary/5 rounded-full blur-[80px] pointer-events-none" />
+    <section id="journey" className="relative overflow-hidden py-28">
+      <div className="pointer-events-none absolute -right-40 top-0 h-96 w-96 rounded-full bg-primary/5 blur-3xl" />
 
-      <div className="max-w-6xl mx-auto relative">
-        {/* Header */}
-        <div className="text-center mb-16">
-          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-primary/10 text-primary text-xs font-bold uppercase tracking-widest mb-4">
-            Career
-          </div>
-          <h2 className="text-4xl md:text-5xl font-black mb-4 tracking-tight">
-            My{' '}
-            <span className="bg-gradient-to-r from-primary to-accent bg-clip-text text-transparent">
-              Journey
-            </span>
+      <div className="container relative z-10 mx-auto px-4">
+        {/* Section header */}
+        <motion.div
+          initial={{ opacity: 0, y: 24 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.7 }}
+          className="mb-14 text-center"
+        >
+          <p className="mb-4 font-mono text-[11px] uppercase tracking-[0.3em] text-primary/80">
+            <span className="opacity-50">03 ·</span> $ git log --career
+          </p>
+          <h2 className="font-display text-4xl tracking-tight md:text-6xl">
+            My Professional <span className="text-luxe italic pr-1">Journey</span>
           </h2>
-          <p className="text-lg text-foreground/65">Professional experience and continuous growth</p>
-        </div>
+        </motion.div>
 
-        <div className="grid md:grid-cols-2 gap-12">
-          {/* Experience Timeline */}
-          <div>
-            <h3 className="text-2xl font-black mb-8 flex items-center gap-3">
-              <Briefcase className="text-primary" size={26} />
-              Work Experience
-            </h3>
-            <div className="space-y-6 relative">
-              {/* Timeline vertical line */}
-              <div className="absolute left-0 top-2 bottom-2 w-px bg-gradient-to-b from-primary via-primary/50 to-transparent ml-1.5" />
+        <div className="mx-auto max-w-3xl">
+          <motion.div
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.7 }}
+            className="os-window"
+          >
+            <div className="os-window-bar">
+              <span className="os-dot" />
+              <span className="os-dot" />
+              <span className="os-dot" />
+              <span className="ml-3 font-mono text-[11px] tracking-widest text-muted-foreground">
+                ~/career — git log
+              </span>
+              <span className="ml-auto font-mono text-[10px] text-primary/70">{commits.length} commits</span>
+            </div>
 
-              {experiences.map((exp) => (
-                <div key={exp.title} className="relative pl-8">
-                  {/* Dot */}
-                  <div className="absolute left-0 top-2 w-3 h-3 rounded-full bg-primary border-2 border-background ring-2 ring-primary/30" />
+            <div className="relative p-6 md:p-8">
+              {/* Timeline rails */}
+              <div className="absolute bottom-8 left-[34px] top-8 w-px bg-border md:left-[42px]" />
+              <div className="absolute bottom-8 left-[34px] top-8 w-px bg-gradient-to-b from-primary via-primary to-primary/20 md:left-[42px]" />
 
-                  <div className="p-5 rounded-2xl bg-card border border-border hover:border-primary/40 hover:shadow-lg hover:shadow-primary/5 transition-all duration-300">
-                    {/* Header row */}
-                    <div className="flex flex-wrap items-center gap-2 mb-2">
-                      <span className={`text-[9px] font-black px-2 py-0.5 rounded-full uppercase tracking-widest ${statusColors[exp.status] ?? 'bg-muted text-muted-foreground'}`}>
-                        {exp.status}
+              <div className="space-y-8">
+                {commits.map((commit, idx) => (
+                  <motion.article
+                    key={commit.hash}
+                    initial={{ opacity: 0, x: 30 }}
+                    whileInView={{ opacity: 1, x: 0 }}
+                    viewport={{ once: true }}
+                    transition={{ duration: 0.6, delay: idx * 0.08 }}
+                    className="group relative pl-12 md:pl-16"
+                  >
+                    <span
+                      className={`absolute left-[30px] top-1.5 h-2.5 w-2.5 -translate-x-1/2 rounded-full transition-all duration-300 md:left-[38px] ${
+                        idx === 0
+                          ? 'bg-primary shadow-[0_0_14px_var(--primary)]'
+                          : 'border border-primary/60 bg-background group-hover:bg-primary'
+                      }`}
+                    />
+
+                    <p className="font-mono text-xs leading-relaxed md:text-sm">
+                      <span className="text-luxe">{commit.hash}</span>{' '}
+                      <span className="text-muted-foreground">
+                        (<span className="text-primary/80">{commit.branch}</span>)
+                      </span>{' '}
+                      <span className="ml-1 rounded border border-primary/25 bg-primary/10 px-1.5 py-0.5 text-[10px] uppercase tracking-[0.15em] text-primary">
+                        {commit.badge}
                       </span>
-                      <span className={`text-[9px] font-black px-2 py-0.5 rounded-full uppercase tracking-widest ${typeColors[exp.type] ?? 'bg-muted text-muted-foreground'}`}>
-                        {exp.type}
-                      </span>
-                    </div>
-                    <h4 className="font-black text-base text-foreground">{exp.title}</h4>
-                    <p className="text-sm text-primary font-semibold mb-1">{exp.company}</p>
-                    <p className="text-xs text-muted-foreground mb-3">{exp.period}</p>
-                    <p className="text-sm text-foreground/65 leading-relaxed mb-3">{exp.description}</p>
-                    <div className="flex flex-wrap gap-1.5">
-                      {exp.tech.map((t) => (
-                        <span key={t} className="text-[9px] font-bold px-2 py-0.5 rounded-full bg-primary/8 text-primary/80 border border-primary/20">
+                    </p>
+
+                    <h3 className="mt-2 font-display text-xl tracking-tight text-foreground transition-colors duration-300 group-hover:text-primary md:text-2xl">
+                      {commit.title}
+                    </h3>
+
+                    <p className="mt-1.5 max-w-xl text-sm leading-relaxed text-muted-foreground">
+                      {commit.description}
+                    </p>
+
+                    <div className="mt-3 flex flex-wrap items-center gap-2">
+                      {commit.tech.map((t) => (
+                        <span
+                          key={t}
+                          className="rounded border border-primary/20 bg-primary/5 px-2 py-0.5 font-mono text-[10px] uppercase tracking-wider text-primary/90"
+                        >
                           {t}
                         </span>
                       ))}
                     </div>
-                  </div>
+                  </motion.article>
+                ))}
+              </div>
+            </div>
+          </motion.div>
+
+          {/* ── training.log ── */}
+          <motion.div
+            initial={{ opacity: 0, y: 24 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.7 }}
+            className="os-window mt-6"
+          >
+            <div className="os-window-bar">
+              <span className="os-dot" />
+              <span className="os-dot" />
+              <span className="os-dot" />
+              <span className="ml-3 font-mono text-[11px] tracking-widest text-muted-foreground">
+                $ ls ~/training
+              </span>
+              <span className="ml-auto font-mono text-[10px] text-primary/70">{training.length} modules</span>
+            </div>
+
+            <div className="grid gap-6 p-6 md:grid-cols-[1.4fr,1fr] md:p-8">
+              <div>
+                <p className="mb-3 font-mono text-[10px] uppercase tracking-[0.2em] text-muted-foreground">
+                  certifications &amp; courses
+                </p>
+                <ul className="space-y-2">
+                  {training.map((course) => (
+                    <li key={course} className="flex items-start gap-2.5 font-mono text-xs text-muted-foreground">
+                      <span className="mt-1.5 h-1.5 w-1.5 shrink-0 rounded-full bg-primary/70" />
+                      <span className="text-foreground/85">{course}</span>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+
+              <div>
+                <p className="mb-3 font-mono text-[10px] uppercase tracking-[0.2em] text-muted-foreground">
+                  key competencies
+                </p>
+                <div className="flex flex-wrap gap-2">
+                  {competencies.map((item) => (
+                    <span
+                      key={item}
+                      className="rounded border border-primary/20 bg-primary/5 px-2 py-0.5 font-mono text-[10px] uppercase tracking-wider text-primary/90"
+                    >
+                      {item}
+                    </span>
+                  ))}
                 </div>
-              ))}
-            </div>
-          </div>
-
-          {/* OnlineCourses & Competencies */}
-          <div className="space-y-8">
-            <div>
-              <h3 className="text-2xl font-black mb-8 flex items-center gap-3">
-                <Award className="text-accent" size={26} />
-                OnlineCourses
-              </h3>
-              <div className="space-y-3">
-                {OnlineCourses.map((cert) => (
-                  <div
-                    key={cert}
-                    className="p-4 rounded-xl bg-gradient-to-r from-primary/8 to-accent/8 border border-primary/20 hover:border-primary/40 transition-all flex items-start gap-3"
-                  >
-                    <div className="w-2 h-2 rounded-full bg-primary mt-2 shrink-0" />
-                    <p className="text-sm font-semibold text-foreground">{cert}</p>
-                  </div>
-                ))}
               </div>
             </div>
-
-            {/* Competencies */}
-            <div className="p-6 rounded-2xl bg-card border-2 border-primary/20 hover:border-primary/40 transition-all">
-              <h4 className="font-black text-foreground mb-5">Key Competencies</h4>
-              <div className="flex flex-wrap gap-2">
-                {competencies.map((skill) => (
-                  <span
-                    key={skill}
-                    className="px-4 py-1.5 text-sm rounded-full bg-primary text-primary-foreground font-semibold hover:shadow-md hover:shadow-primary/30 hover:scale-[1.03] transition-all cursor-default"
-                  >
-                    {skill}
-                  </span>
-                ))}
-              </div>
-            </div>
-          </div>
+          </motion.div>
         </div>
       </div>
     </section>

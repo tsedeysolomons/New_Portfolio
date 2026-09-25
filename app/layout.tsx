@@ -14,6 +14,16 @@ const geistMono = localFont({
   display: 'swap',
 })
 
+/* Display serif used for the big editorial headlines (terminal-luxe theme) */
+const instrumentSerif = localFont({
+  src: [
+    { path: '../public/fonts/instrument-serif-latin.woff2', style: 'normal', weight: '400' },
+    { path: '../public/fonts/instrument-serif-italic-latin.woff2', style: 'italic', weight: '400' },
+  ],
+  variable: '--font-instrument-serif',
+  display: 'swap',
+})
+
 export const metadata: Metadata = {
   title: 'Tsedey Solomon | Full-Stack Software Developer',
   description: 'Full-Stack Software Developer based in Addis Ababa, Ethiopia. Specialized in Angular, .NET, React/Next.js, TypeScript, and PostgreSQL. Available for opportunities.',
@@ -32,8 +42,8 @@ export const metadata: Metadata = {
 export const viewport: Viewport = {
   colorScheme: 'light dark',
   themeColor: [
-    { media: '(prefers-color-scheme: light)', color: '#A78BFA' },
-    { media: '(prefers-color-scheme: dark)', color: '#A78BFA' },
+    { media: '(prefers-color-scheme: light)', color: '#FAF8F5' },
+    { media: '(prefers-color-scheme: dark)', color: '#0E0D0C' },
   ],
   width: 'device-width',
   initialScale: 1,
@@ -47,7 +57,10 @@ export default function RootLayout({
   children: React.ReactNode
 }>) {
   return (
-    <html lang="en" className={`${geistSans.variable} ${geistMono.variable} bg-background scroll-smooth`}>
+    <html
+      lang="en"
+      className={`${geistSans.variable} ${geistMono.variable} ${instrumentSerif.variable} bg-background scroll-smooth`}
+    >
       <body className="font-sans antialiased">
         {children}
         {process.env.NODE_ENV === 'production' && <Analytics />}

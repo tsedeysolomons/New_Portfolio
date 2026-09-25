@@ -1,126 +1,178 @@
 'use client';
 
-import { Mail, MapPin, CheckCircle, Award } from 'lucide-react';
+import type { ReactNode } from 'react';
 import { motion } from 'framer-motion';
 import Image from 'next/image';
 
-const skillBars = [
-  { name: 'Full-Stack Web Dev', level: 90 },
-  { name: 'Angular & .NET', level: 85 },
-  { name: 'React & Next.js', level: 88 },
-];
+const Line = ({ children }: { children: ReactNode }) => <p>{children}</p>;
 
-const stats = [
-  { label: 'Name', value: 'Tsedey Solomon' },
-  { label: 'Email', value: 'tsdeys19@gmail.com' },
-  { label: 'Telegram', value: '@tsedi_sol' },
-  { label: 'Location', value: 'Addis Ababa, ET' },
-  { label: 'Experience', value: '2+ Years' },
-  { label: 'Status', value: 'Open to Work' },
-];
+const Key = ({ children }: { children: ReactNode }) => (
+  <span className="text-foreground/90">{children}</span>
+);
+const Punc = ({ children }: { children: ReactNode }) => (
+  <span className="text-muted-foreground/60">{children}</span>
+);
+const Str = ({ children }: { children: ReactNode }) => (
+  <span className="text-primary/75">{children}</span>
+);
 
 const About = () => {
   return (
-    <section id="about" className="relative py-24 px-6 sm:px-8 lg:px-10 overflow-hidden bg-card/10">
-      {/* Background blobs */}
-      <div className="absolute top-[30%] right-[-10%] w-[350px] h-[350px] bg-primary/5 rounded-full blur-[100px] pointer-events-none" />
-      <div className="absolute bottom-[20%] left-[-10%] w-[300px] h-[300px] bg-primary/5 rounded-full blur-[90px] pointer-events-none" />
+    <section id="about" className="relative overflow-hidden py-28">
+      <div className="pointer-events-none absolute -left-40 top-1/3 h-96 w-96 rounded-full bg-primary/5 blur-3xl" />
 
-      <div className="max-w-7xl mx-auto">
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-center">
+      <div className="container relative z-10 mx-auto px-4">
+        {/* Section header */}
+        <motion.div
+          initial={{ opacity: 0, y: 24 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.7 }}
+          className="mb-14 text-center"
+        >
+          <p className="mb-4 font-mono text-[11px] uppercase tracking-[0.3em] text-primary/80">
+            <span className="opacity-50">02 ·</span> $ cat ./developer.ts
+          </p>
+          <h2 className="font-display text-4xl tracking-tight md:text-6xl">
+            The <span className="text-luxe italic pr-1">Source</span> Behind the Work
+          </h2>
+        </motion.div>
 
-          {/* ── LEFT COLUMN: Portrait + Floating Skills Card (spans 5 cols) ── */}
+        <div className="mx-auto grid max-w-5xl items-stretch gap-8 lg:grid-cols-[1fr,1.4fr]">
+          {/* ── Profile photo window ── */}
           <motion.div
-            initial={{ opacity: 0, x: -30 }}
+            initial={{ opacity: 0, x: -50 }}
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.8 }}
-            className="lg:col-span-5 relative flex justify-center"
           >
-            <div className="relative w-full max-w-sm aspect-[4/5] rounded-[2rem] overflow-hidden border border-border shadow-xl">
-              <Image
-                src="/profile.jpg"
-                alt="Tsedey Solomon portrait"
-                fill
-                className="object-cover"
-              />
-              <div className="absolute inset-0 bg-gradient-to-t from-background/40 to-transparent" />
-            </div>
-
-            {/* Overlapping Floating Skills Card */}
-            <motion.div
-              initial={{ opacity: 0, y: 30, scale: 0.9 }}
-              whileInView={{ opacity: 1, y: 0, scale: 1 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.6, delay: 0.3 }}
-              className="absolute bottom-[-20px] right-[5%] sm:right-[10%] lg:right-[-20px] z-10 w-[260px] bg-card border border-border p-5 rounded-2xl shadow-2xl"
-            >
-              <h3 className="text-xs font-black uppercase tracking-[0.2em] text-foreground mb-4 pb-2 border-b border-border flex items-center gap-2">
-                <span className="w-1.5 h-1.5 rounded-full bg-primary" />
-                My Skills
-              </h3>
-              <div className="space-y-4">
-                {skillBars.map((skill) => (
-                  <div key={skill.name} className="space-y-1.5">
-                    <div className="flex justify-between items-center text-[11px] font-bold text-foreground/80">
-                      <span>{skill.name}</span>
-                      <span className="text-primary">{skill.level}%</span>
-                    </div>
-                    {/* Progress Bar container */}
-                    <div className="w-full h-1.5 bg-muted rounded-full overflow-hidden">
-                      <motion.div
-                        initial={{ width: 0 }}
-                        whileInView={{ width: `${skill.level}%` }}
-                        viewport={{ once: true }}
-                        transition={{ duration: 1, delay: 0.4 }}
-                        className="h-full bg-primary rounded-full"
-                      />
-                    </div>
-                  </div>
-                ))}
+            <div className="os-window glow-gold h-full">
+              <div className="os-window-bar">
+                <span className="os-dot" />
+                <span className="os-dot" />
+                <span className="os-dot" />
+                <span className="ml-3 font-mono text-[11px] tracking-widest text-muted-foreground">
+                  profile-photo.jpg — preview
+                </span>
               </div>
-            </motion.div>
+              <div className="relative aspect-[4/5] scanlines">
+                <Image
+                  src="/profile.jpg"
+                  alt="Tsedey Solomon"
+                  fill
+                  className="object-cover saturate-[0.85] transition-all duration-700 hover:saturate-100"
+                />
+                <div className="absolute bottom-0 left-0 right-0 flex items-center justify-between bg-background/80 px-4 py-2 font-mono text-[10px] uppercase tracking-[0.2em] text-muted-foreground backdrop-blur">
+                  <span>RGB · 4:5</span>
+                  <span className="text-primary">Addis Ababa, Ethiopia</span>
+                </div>
+              </div>
+            </div>
           </motion.div>
 
-          {/* ── RIGHT COLUMN: Speech-bubble Header & Info (spans 7 cols) ── */}
+          {/* ── developer.ts window ── */}
           <motion.div
-            initial={{ opacity: 0, x: 30 }}
+            initial={{ opacity: 0, x: 50 }}
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true }}
-            transition={{ duration: 0.8 }}
-            className="lg:col-span-7 space-y-6"
+            transition={{ duration: 0.8, delay: 0.1 }}
           >
-            {/* Boxed title "ABOUT ME" with point pointer */}
-            <div className="inline-block relative">
-              <div className="border-2 border-primary text-primary px-6 py-2.5 rounded-xl font-black text-sm uppercase tracking-[0.2em] relative z-10 bg-background">
-                About Me
+            <div className="os-window h-full">
+              <div className="os-window-bar">
+                <span className="os-dot" />
+                <span className="os-dot" />
+                <span className="os-dot" />
+                <span className="ml-3 font-mono text-[11px] tracking-widest text-muted-foreground">
+                  developer.ts
+                </span>
+                <span className="ml-auto font-mono text-[10px] text-primary/60">● saved</span>
               </div>
-              {/* Pointer bubble tail */}
-              <div className="absolute left-[30px] bottom-[-6px] w-3 h-3 bg-background border-r-2 border-b-2 border-primary rotate-45 z-0" />
-            </div>
 
-            {/* Biography text */}
-            <div className="space-y-4 text-base text-foreground/60 leading-relaxed">
-              <p>
-                Hi! My name is <span className="text-foreground font-bold">Tsedey Solomon</span>. I am a full-stack developer, and I am very passionate and dedicated to my work. With 2+ years of experience as a professional developer, I have acquired the skills and knowledge necessary to make your project a success.
-              </p>
-              <p>
-                I enjoy every step of the development process, from discussion and collaboration to concept and execution. Currently working full-time at <span className="text-primary font-semibold">DAF Tech Computer</span> and open to freelance opportunities that push boundaries.
-              </p>
-            </div>
+              <div className="overflow-x-auto p-5 font-mono text-[12.5px] leading-[1.9] md:text-sm">
+                <Line>
+                  <span className="text-muted-foreground/50 italic">
+                    {'/** '}I&apos;m a full-stack developer building scalable web products, enterprise systems and
+                    customer-facing applications.{' */'}
+                  </span>
+                </Line>
 
-            {/* Info Grid (Labels & Values) */}
-            <div className="grid grid-cols-1 sm:grid-cols-2 gap-x-6 gap-y-4 pt-6 border-t border-border mt-6">
-              {stats.map((stat) => (
-                <div key={stat.label} className="space-y-1">
-                  <span className="text-[10px] font-black uppercase tracking-[0.18em] text-muted-foreground block">
-                    {stat.label}
-                  </span>
-                  <span className="text-sm font-bold text-foreground/90 block">
-                    {stat.value}
-                  </span>
+                <p className="mt-2">
+                  <span className="text-primary/90 italic">const</span>{' '}
+                  <Key>tsedey</Key>
+                  <Punc>:</Punc> <span className="text-luxe">Developer</span> <Punc>= {'{'}</Punc>
+                </p>
+
+                <div className="pl-5">
+                  <Line>
+                    <Key>name</Key>
+                    <Punc>:</Punc> <Str>&quot;Tsedey Solomon&quot;</Str>
+                    <Punc>,</Punc>
+                  </Line>
+                  <Line>
+                    <Key>base</Key>
+                    <Punc>:</Punc> <Str>&quot;Addis Ababa, Ethiopia&quot;</Str>
+                    <Punc>,</Punc>
+                  </Line>
+                  <Line>
+                    <Key>focus</Key>
+                    <Punc>: [</Punc>
+                    <Str>&quot;clean architecture&quot;</Str>
+                    <Punc>, </Punc>
+                    <Str>&quot;delivery speed&quot;</Str>
+                    <Punc>, </Punc>
+                    <Str>&quot;business impact&quot;</Str>
+                    <Punc>],</Punc>
+                  </Line>
+                  <Line>
+                    <Key>experience</Key>
+                    <Punc>: {'{'}</Punc>
+                  </Line>
+                  <div className="pl-5">
+                    <Line>
+                      <Key>enterprise</Key>
+                      <Punc>:</Punc> <Str>&quot;ERP, billing &amp; trainer pooling systems&quot;</Str>
+                      <Punc>,</Punc>
+                    </Line>
+                    <Line>
+                      <Key>platforms</Key>
+                      <Punc>:</Punc> <Str>&quot;e-ticketing, e-commerce &amp; inventory&quot;</Str>
+                      <Punc>,</Punc>
+                    </Line>
+                    <Line>
+                      <Key>mobile</Key>
+                      <Punc>:</Punc> <Str>&quot;React Native apps &amp; embedded IoT&quot;</Str>
+                      <Punc>,</Punc>
+                    </Line>
+                  </div>
+                  <Line>
+                    <Punc>{'}'},</Punc>
+                  </Line>
+                  <Line>
+                    <Key>available</Key>
+                    <Punc>:</Punc> <span className="text-primary">true</span>
+                    <Punc>,</Punc>
+                  </Line>
                 </div>
-              ))}
+
+                <Line>
+                  <Punc>{'}'}</Punc>
+                </Line>
+
+                <div className="mt-5 border-t border-border/60 pt-4">
+                  <Line>
+                    <span className="text-primary/90 italic">export const</span> <Key>years_experience</Key>{' '}
+                    <Punc>=</Punc> <span className="text-luxe text-base">2+</span>
+                  </Line>
+                  <Line>
+                    <span className="text-primary/90 italic">export const</span> <Key>projects_shipped</Key>{' '}
+                    <Punc>=</Punc> <span className="text-luxe text-base">7+</span>
+                  </Line>
+                  <Line>
+                    <span className="text-primary/90 italic">export const</span> <Key>companies_served</Key>{' '}
+                    <Punc>=</Punc> <span className="text-luxe text-base">3+</span>
+                  </Line>
+                </div>
+              </div>
             </div>
           </motion.div>
         </div>
