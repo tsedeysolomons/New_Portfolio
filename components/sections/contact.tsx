@@ -38,6 +38,7 @@ const Contact = () => {
   const [formData, setFormData] = useState({ name: '', email: '', subject: '', message: '' });
   const [submitted, setSubmitted] = useState(false);
   const [loading, setLoading] = useState(false);
+  const [error, setError] = useState('');
 
   const handleChange = (e: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
@@ -46,12 +47,45 @@ const Contact = () => {
   const handleSubmit = async (e: FormEvent) => {
     e.preventDefault();
     setLoading(true);
-    setTimeout(() => {
-      setLoading(false);
+    setError('');
+
+    // FormSubmit is a free no-signup relay: it forwards the POST to the destination
+    // mailbox. First ever send triggers a one-time confirmation email to that
+    // mailbox — click the link in it to activate.
+    try {
+      const res = await fetch(
+        'https://formsubmit.co/ajax/tsedeysolomon91@gmail.com',
+        {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+            Accept: 'application/json',
+          },
+          body: JSON.stringify({
+            name: formData.name,
+            email: formData.email,
+            subject: formData.subject || `New portfolio message from ${formData.name}`,
+            message: formData.message,
+            _subject:
+              formData.subject ||
+              `[Portfolio] New message from ${formData.name} <${formData.email}>`,
+            _template: 'table',
+            _captcha: 'false',
+          }),
+        },
+      );
+
+      if (!res.ok) throw new Error(`HTTP ${res.status}`);
+
       setSubmitted(true);
       setFormData({ name: '', email: '', subject: '', message: '' });
       setTimeout(() => setSubmitted(false), 4000);
-    }, 1200);
+    } catch (err) {
+      console.error('Contact form submit failed:', err);
+      setError('Could not send right now. Please email me directly — see the panel on the left.');
+    } finally {
+      setLoading(false);
+    }
   };
 
   const inputClass =
@@ -174,7 +208,7 @@ const Contact = () => {
                 message.txt
               </span>
               <span className="ml-auto font-mono text-[10px] text-primary/60">
-                {submitted ? '● sent' : '● editing'}
+                {error ? '● error' : submitted ? '● sent' : '● editing'}
               </span>
             </div>
 
@@ -261,6 +295,12 @@ const Contact = () => {
                   </>
                 )}
               </button>
+
+              {error && (
+                <p className="text-center font-mono text-xs text-destructive" role="alert">
+                  {error}
+                </p>
+              )}
             </form>
           </motion.div>
         </div>

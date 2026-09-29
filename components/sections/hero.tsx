@@ -4,10 +4,11 @@ import { useEffect, useState } from 'react';
 import { motion } from 'framer-motion';
 
 const roles = [
-  'Full-Stack Developer',
   'Software Engineer',
-  'Angular & .NET Engineer',
-  'React / Next.js Developer',
+  'Website Designer',
+  'Mobile App Developer',
+  'Full-Stack Developer',
+  'AI & ML Engineer',
 ];
 
 const stats = [

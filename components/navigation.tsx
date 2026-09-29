@@ -2,6 +2,7 @@
 
 import { useState, useEffect } from 'react';
 import { Menu, X, Sun, Moon, Download } from 'lucide-react';
+import Image from 'next/image';
 
 const navLinks = [
   { num: '01', href: '#home', label: '[home]' },
@@ -69,6 +70,14 @@ const Navigation = () => {
         <div className="flex h-14 items-center justify-between">
           {/* Shell prompt logo */}
           <a href="#home" className="flex items-center gap-2.5 font-mono text-sm" aria-label="Tsedey Solomon — home">
+            <Image
+              src="/ts-logo.png"
+              alt="Tsedey Solomon logo"
+              width={28}
+              height={28}
+              priority
+              className="h-7 w-7 rounded-md"
+            />
             <span className="flex gap-1.5">
               <span className="os-dot" />
               <span className="os-dot" />

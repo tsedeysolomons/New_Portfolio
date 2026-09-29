@@ -7,6 +7,7 @@ import Experience from '@/components/sections/experience';
 import Projects from '@/components/sections/projects';
 import Skills from '@/components/sections/skills';
 import Contact from '@/components/sections/contact';
+import QuoteBanner from '@/components/quote';
 import Footer from '@/components/footer';
 
 export default function Page() {
@@ -22,6 +23,7 @@ export default function Page() {
       <Projects />
       <Skills />
       <Contact />
+      <QuoteBanner />
       <Footer />
     </main>
   );

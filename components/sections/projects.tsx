@@ -15,7 +15,7 @@ const projects = [
     description:
       "Streamlining professional trainer mobilization for the Ethiopian Midwives Association — a centralized, data-driven platform optimizing nationwide trainer allocation across Ethiopia's healthcare education network.",
     tech: ['Angular', 'Tailwind CSS', 'C#', '.NET'],
-    image: '/trainerpooling.png',
+    image: '/trainerpooling.webp',
     link: 'http://49.12.194.224:8081/',
     github: 'https://github.com/tsedeysolomons/Trainer-pooling.git',
   },
@@ -27,7 +27,7 @@ const projects = [
     description:
       'An enterprise-grade billing and management platform featuring meter rate configuration, consumption tariff management, customer service, finance and human resource modules.',
     tech: ['Angular', 'C#', '.NET', 'SQL Server'],
-    image: '/daftech-billing.png',
+    image: '/daftech-billing.webp',
     link: 'http://196.190.251.194:8089/',
     github: '#',
   },
@@ -39,7 +39,7 @@ const projects = [
     description:
       'A digital ticketing system designed to modernize public transportation in Ethiopia with online booking, payment integration and real-time tracking.',
     tech: ['React', 'Node.js', 'Prisma', 'MySQL'],
-    image: '/eticket.png',
+    image: '/eticket.webp',
     link: '#',
     github: 'https://github.com/tsedeysolomons/EMBE-T.git',
   },
@@ -51,7 +51,7 @@ const projects = [
     description:
       'A digital startup accelerator platform built for i-cog labs that connects Ethiopian innovators and investors in one collaboration hub.',
     tech: ['Next.js', 'PostgreSQL', 'Node.js', 'Tailwind CSS'],
-    image: '/ecombinator.png',
+    image: '/ecombinator.webp',
     link: '#',
     github: 'https://github.com/tsedeysolomons/E-COMBINATOR.git',
   },
@@ -63,7 +63,7 @@ const projects = [
     description:
       'A skill-sharing mobile app built with React Native, letting users exchange skills and services through profiles, chat and scheduling.',
     tech: ['React Native', 'Firebase', 'Chat', 'Scheduling'],
-    image: '/skillswap.png',
+    image: '/skillswap.webp',
     link: '#',
     github: 'https://github.com/tsedeysolomons/SkillSwap.git',
   },
@@ -75,7 +75,7 @@ const projects = [
     description:
       'A fully responsive digital menu with categories, real-time cart, advanced search and filtering for mobile and desktop.',
     tech: ['Next.js', 'Supabase', 'Prisma', 'React'],
-    image: '/bgs-restaurant.png',
+    image: '/bgs-restaurant.webp',
     link: '#',
     github: 'https://github.com/tsedeysolomons/BGS-Restaurant_Menu.git',
   },
@@ -87,7 +87,7 @@ const projects = [
     description:
       "A modern web-based inventory management system for a men's clothing store, with dashboard analytics and stock tracking.",
     tech: ['React', 'Tailwind CSS', 'Dashboard', 'Inventory'],
-    image: '/havefashion.png',
+    image: '/havefashion.webp',
     link: '#',
     github: 'https://github.com/tsedeysolomons/have-fashi-inventory-system.git',
   },

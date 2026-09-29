@@ -1,4 +1,5 @@
 import Link from 'next/link';
+import Image from 'next/image';
 
 const quickLinks = [
   { num: '02', label: 'about', href: '#about' },
@@ -19,6 +20,13 @@ const Footer = () => {
         <div className="flex flex-col items-center justify-between gap-6 font-mono text-xs text-muted-foreground md:flex-row">
           {/* Prompt */}
           <Link href="#home" className="flex items-center gap-2.5">
+            <Image
+              src="/ts-logo.png"
+              alt="Tsedey Solomon logo"
+              width={28}
+              height={28}
+              className="h-7 w-7 rounded-md"
+            />
             <span className="flex gap-1.5">
               <span className="os-dot" />
               <span className="os-dot" />

@@ -38,7 +38,7 @@ const About = () => {
           </h2>
         </motion.div>
 
-        <div className="mx-auto grid max-w-5xl items-stretch gap-8 lg:grid-cols-[1fr,1.4fr]">
+        <div className="mx-auto grid max-w-5xl items-start gap-8 lg:grid-cols-[0.5fr,1.5fr]">
           {/* ── Profile photo window ── */}
           <motion.div
             initial={{ opacity: 0, x: -50 }}
@@ -46,7 +46,7 @@ const About = () => {
             viewport={{ once: true }}
             transition={{ duration: 0.8 }}
           >
-            <div className="os-window glow-gold h-full">
+            <div className="os-window glow-gold mx-auto w-full max-w-[220px]">
               <div className="os-window-bar">
                 <span className="os-dot" />
                 <span className="os-dot" />
@@ -60,6 +60,7 @@ const About = () => {
                   src="/profile.jpg"
                   alt="Tsedey Solomon"
                   fill
+                  sizes="300px"
                   className="object-cover saturate-[0.85] transition-all duration-700 hover:saturate-100"
                 />
                 <div className="absolute bottom-0 left-0 right-0 flex items-center justify-between bg-background/80 px-4 py-2 font-mono text-[10px] uppercase tracking-[0.2em] text-muted-foreground backdrop-blur">
